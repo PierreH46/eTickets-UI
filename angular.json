@@ -28,7 +28,11 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "node_modules/bootstrap/dist/css/bootstrap.css",
+	            "node_modules/primeng/resources/themes/nova-light/theme.css",
+	            "node_modules/primeng/resources/primeng.min.css",
+	            "node_modules/@fortawesome/fontawesome-free/css/all.css",
+              "src/styles.css"
             ],
             "scripts": []
           },
@@ -124,6 +128,22 @@
           }
         }
       }
-    }},
-  "defaultProject": "eTickets-UI"
+    }
+  },
+  "defaultProject": "eTickets-UI",
+  "schematics": {
+    "@schematics/angular:component": {
+      "spec": false,
+      "inlineStyle": true
+    },
+    "@schematics/angular:service": {
+      "spec": false
+    },
+    "@schematics/angular:guard": {
+      "spec": false
+    },
+    "@schematics/angular:directive": {
+      "spec": false
+    }
+  }
 }
