@@ -1,0 +1,31 @@
+<h2>Cinema</h2>
+
+<div class= "row">
+    <div class= "col-sm-4" *ngFor="let currentEticket of cinemaEtickets">
+        <app-eticket-item [eticket]="currentEticket"></app-eticket-item>
+    </div>
+</div>
+
+<h2>Parcs d'attractions</h2>
+
+<div class= "row">
+    <div class= "col-sm-4" *ngFor="let currentEticket of parkEtickets">
+        <app-eticket-item [eticket]="currentEticket"></app-eticket-item>
+    </div>
+</div>
+
+<h2>Théatre</h2>
+
+<div class= "row">
+    <div class= "col-sm-4" *ngFor="let currentEticket of theatreEtickets">
+        <app-eticket-item [eticket]="currentEticket"></app-eticket-item>
+    </div>
+</div>
+
+<h2>Concert</h2>
+
+<div class= "row">
+    <div class= "col-sm-4" *ngFor="let currentEticket of concertEtickets">
+        <app-eticket-item [eticket]="currentEticket"></app-eticket-item>
+    </div>
+</div>
