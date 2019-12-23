@@ -1,5 +1,4 @@
 import { EticketOptions } from './eticket-options';
-import { Provider } from './provider';
 
 export enum Category {
     CINEMA,
@@ -8,28 +7,32 @@ export enum Category {
     CONCERT
 }
 
+export enum PriceType {
+    CHILD_PRICE,
+    ADULT_PRICE,
+    UNIQUE_PRICE
+}
+
 export class Eticket {
 
     public id: string;
     public name: string; // ajout du name
     public description: string;
+    public image: string;
     public category: Category; // ajout de category
     public law: string;
     public isNominatif: boolean;
     public dateValidite: string;
-    public internalPriceAdult: number;
-    public internalPriceChild: number;
-    public externalPriceAdult: number;
-    public externalPriceChild: number;
-    public childScale: string;
-    public adultScale: string;
+    public priceType: PriceType;
+    public price: number;
     public stock: number;
-    public provider: Provider;
+    public provider: string;
 
     constructor(options: EticketOptions) {
         this.id = options.id;
         this.name = options.name;
         this.description = options.description;
+        this.image = options.image;
         switch (options.category) {
             case 'CINEMA':
                 this.category = Category.CINEMA;
@@ -47,13 +50,20 @@ export class Eticket {
         this.law = options.law || '';
         this.isNominatif = options.isNominatif || false;
         this.dateValidite = options.dateValidite || '';
-        this.internalPriceAdult = options.internalPriceAdult || null;
-        this.internalPriceChild = options.internalPriceChild || null;
-        this.externalPriceAdult = options.externalPriceAdult || null;
-        this.externalPriceChild = options.externalPriceChild || null;
-        this.childScale = options.childScale || '';
-        this.adultScale = options.adultScale || '';
+        switch (options.priceType) {
+            case 'CHILD_PRICE':
+                this.priceType = PriceType.CHILD_PRICE;
+                break;
+            case 'ADULT_PRICE':
+                this.priceType = PriceType.ADULT_PRICE;
+                break;
+            case 'UNIQUE_PRICE':
+                this.priceType = PriceType.UNIQUE_PRICE;
+                break;
+        }
+        this.price = options.price;
         this.stock = options.stock || null;
+        this.provider = options.provider;
     }
 
 }

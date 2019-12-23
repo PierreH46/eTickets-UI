@@ -2,15 +2,13 @@ export interface EticketOptions {
     id: string;
     name: string;
     description: string;
+    image: string;
     category: string;
     law?: string;
     isNominatif?: boolean;
     dateValidite?: string;
-    internalPriceAdult?: number;
-    internalPriceChild?: number;
-    externalPriceAdult?: number;
-    externalPriceChild?: number;
-    childScale?: string;
-    adultScale?: string;
+    priceType: string;
+    price: number;
     stock?: number;
+    provider: string;
 }
