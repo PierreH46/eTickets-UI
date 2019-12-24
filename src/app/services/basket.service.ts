@@ -11,7 +11,9 @@ export class BasketService {
   totalAmount: number;
   totalEtickets: number;
 
-  constructor(private eticketService: EticketService) { }
+  constructor(private eticketService: EticketService) {
+    this.initBasket();
+   }
 
   addEticket(eticket: Eticket, qty: number = 1) {
     // le produit en cours est-il déjà dans le panier ? à quelle position pour pouvoir le mettre à jour
@@ -47,5 +49,11 @@ export class BasketService {
 
     // @TODO : enregistre le panier
 
+  }
+
+  initBasket() {
+    this.eticketInfo = [];
+    this.totalAmount = 0;
+    this.totalEtickets = 0;
   }
 }

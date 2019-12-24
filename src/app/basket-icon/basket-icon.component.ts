@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BasketService } from '../services/basket.service';
 
 @Component({
   selector: 'app-basket-icon',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BasketIconComponent implements OnInit {
 
-  constructor() { }
+  constructor(private basketService: BasketService) { }
 
   ngOnInit() {
   }
 
+  getTotalEtickets() {
+    return this.basketService.totalEtickets;
+  }
 }
