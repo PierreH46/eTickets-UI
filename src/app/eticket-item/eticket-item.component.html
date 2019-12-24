@@ -4,5 +4,14 @@
     <div class="card-body">
         <h5 class="card-title">{{ eticket.name }} </h5>
         <p class= "card-text"> {{ eticket.description.substring(0,30) }} ... </p>
+
+        <p class= "buttons" style="font-size: 30px;">
+            <i class="far fa-minus-square"
+             (click)="remove($event)"
+             *ngIf="numEticketItem > 0" >
+            </i>
+            {{ numEticketItem }}
+            <i class="far fa-plus-square" (click)="add($event)"></i>
+          </p>
     </div>
 </div>
