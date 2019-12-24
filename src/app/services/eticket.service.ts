@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Eticket } from '../model/eticket';
 
 @Injectable({
@@ -8,10 +9,14 @@ import { Eticket } from '../model/eticket';
 })
 export class EticketService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              @Inject('BACKEND_URL') private url: string) { }
 
   getAllEtickets(): Observable<Eticket[]> {
-    return this.http.get<Eticket[]>('http://localhost:8080/etickets');
+    return this.http.get<Eticket[]>(`${this.url}/etickets`)
+      .pipe(
+        map((jsonEticket: any) => jsonEticket.map(jsonEticket => new Eticket(jsonEticket)))
+      );
   }
 
 
