@@ -24,7 +24,7 @@ export class EticketsListComponent implements OnInit {
       .subscribe(listEtickets => {
         this.etickets= listEtickets;
         this.cinemaEtickets = this.etickets.filter(e => e.category === Category.CINEMA);
-        this.parkEtickets = this.etickets.filter(e => e.category === Category.PARC_ATTRACTION);
+        this.parkEtickets = this.etickets.filter(e => e.category === Category.LOISIR);
         this.theatreEtickets = this.etickets.filter(e => e.category === Category.THEATRE);
         this.concertEtickets = this.etickets.filter(e => e.category === Category.CONCERT);
       })

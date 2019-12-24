@@ -2,7 +2,7 @@ import { EticketOptions } from './eticket-options';
 
 export enum Category {
     CINEMA,
-    PARC_ATTRACTION,
+    LOISIR,
     THEATRE,
     CONCERT
 }
@@ -37,8 +37,8 @@ export class Eticket {
             case 'CINEMA':
                 this.category = Category.CINEMA;
                 break;
-            case 'PARC_ATTRACTION':
-                this.category = Category.PARC_ATTRACTION;
+            case 'LOISIR':
+                this.category = Category.LOISIR;
                 break;
             case 'THEATRE':
                 this.category = Category.THEATRE;
