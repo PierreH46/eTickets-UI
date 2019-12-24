@@ -6,12 +6,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EticketsListComponent } from './etickets-list/etickets-list.component';
 import { EticketItemComponent } from './eticket-item/eticket-item.component';
+import { BasketIconComponent } from './basket-icon/basket-icon.component';
+import { UserIconComponent } from './user-icon/user-icon.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EticketsListComponent,
-    EticketItemComponent
+    EticketItemComponent,
+    BasketIconComponent,
+    UserIconComponent
   ],
   imports: [
     BrowserModule,
@@ -19,8 +23,8 @@ import { EticketItemComponent } from './eticket-item/eticket-item.component';
     AppRoutingModule
   ],
   providers: [
-    // { provide: 'BACKEND_URL', useValue: 'http://localhost:3005'} // JsonServer
-    { provide: 'BACKEND_URL', useValue: 'http://localhost:8080'}
+    { provide: 'BACKEND_URL', useValue: 'http://localhost:3004'} // JsonServer
+    // { provide: 'BACKEND_URL', useValue: 'http://localhost:8080'}
   ],
   bootstrap: [AppComponent]
 })
