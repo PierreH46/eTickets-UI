@@ -1,0 +1,21 @@
+<!--
+<div class="radio">
+    <label>
+        <input type="radio" name="gender" value="Adult" (click)="setradio('Adult')" [checked]='true' ngModel>
+        Adult
+    </label>
+</div>
+<div class="radio">
+    <label>
+        <input type="radio" name="gender" value="Enfant" (click)="setradio('Enfant')" ngModel>
+        Enfant
+    </label>
+</div>
+-->
+<div *ngIf="isSelected('Adult')" >
+    <input type="text"/>Adult radio button selected
+  </div>
+
+  <div *ngIf="isSelected('Enfant')">
+     <input type="text"/> Enfant radio button selected
+  </div>
