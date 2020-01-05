@@ -36,8 +36,8 @@ import { LoginComponent } from './login/login.component';
     AppRoutingModule
   ],
   providers: [
-    { provide: 'BACKEND_URL', useValue: 'http://localhost:3004'}, // JsonServer
-    // { provide: 'BACKEND_URL', useValue: 'http://localhost:8080'}
+    // { provide: 'BACKEND_URL', useValue: 'http://localhost:3004'}, // JsonServer
+    { provide: 'BACKEND_URL', useValue: 'http://localhost:8080'},
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     // provider used to create fake backend

@@ -12,7 +12,7 @@ export class EticketsListComponent implements OnInit {
   etickets: Eticket[];
   
   cinemaEtickets: Eticket[];
-  loisirEtickets: Eticket[];
+  loisirsEtickets: Eticket[];
   theatreEtickets: Eticket[];
   concertEtickets: Eticket[];
 
@@ -22,9 +22,9 @@ export class EticketsListComponent implements OnInit {
   ngOnInit() {
     this.eticketService.getAllEtickets()
       .subscribe(listEtickets => {
-        this.etickets= listEtickets;
+        this.etickets = listEtickets;
         this.cinemaEtickets = this.etickets.filter(e => e.category === Category.CINEMA);
-        this.loisirEtickets = this.etickets.filter(e => e.category === Category.LOISIR);
+        this.loisirsEtickets = this.etickets.filter(e => e.category === Category.LOISIRS);
         this.theatreEtickets = this.etickets.filter(e => e.category === Category.THEATRE);
         this.concertEtickets = this.etickets.filter(e => e.category === Category.CONCERT);
       })

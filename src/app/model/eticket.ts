@@ -1,17 +1,20 @@
 import { EticketOptions } from './eticket-options';
+import { Rate } from './rate';
 
 export enum Category {
     CINEMA,
-    LOISIR,
+    LOISIRS,
     THEATRE,
     CONCERT
 }
 
+/*
 export enum PriceType {
     CHILD_PRICE,
     ADULT_PRICE,
     UNIQUE_PRICE
 }
+*/
 
 export class Eticket {
 
@@ -22,23 +25,26 @@ export class Eticket {
     public category: Category; // ajout de category
     public law: string;
     public isNominatif: boolean;
-    public dateValidite: string;
+    public validityDate: string;
+    public rates: Rate[];
+    /* 
     public priceType: PriceType;
     public price: number;
     public stock: number;
+     */
     public provider: string;
 
     constructor(options: EticketOptions) {
         this.id = options.id;
-        this.name = options.name;
+        this.name = options.reference;
         this.description = options.description;
         this.image = options.image;
         switch (options.category) {
             case 'CINEMA':
                 this.category = Category.CINEMA;
                 break;
-            case 'LOISIR':
-                this.category = Category.LOISIR;
+            case 'LOISIRS':
+                this.category = Category.LOISIRS;
                 break;
             case 'THEATRE':
                 this.category = Category.THEATRE;
@@ -49,7 +55,9 @@ export class Eticket {
         }
         this.law = options.law || '';
         this.isNominatif = options.isNominatif || false;
-        this.dateValidite = options.dateValidite || '';
+        this.validityDate = options.validityDate || '';
+        this.rates = options.rates;
+        /*
         switch (options.priceType) {
             case 'CHILD_PRICE':
                 this.priceType = PriceType.CHILD_PRICE;
@@ -63,6 +71,7 @@ export class Eticket {
         }
         this.price = options.price;
         this.stock = options.stock || null;
+        */
         this.provider = options.provider;
     }
 

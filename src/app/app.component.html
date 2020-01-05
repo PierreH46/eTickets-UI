@@ -10,6 +10,12 @@
   <div>
     <app-user-icon></app-user-icon>
   </div>
+
+  <div class="navbar-nav" *ngIf="currentUser">
+    <a class="nav-item nav-link" routerLink="/">Home</a>
+    <a class="nav-item nav-link" (click)="logout()">Logout</a>
+  </div>
+
 </nav>
 
 <div class="container">

@@ -28,7 +28,7 @@ export class BasketService {
 
     // incremente le nombre total d'articles et recalcule le montant total
     this.totalEtickets += qty;
-    this.totalAmount = this.totalAmount + (qty * eticket.price);
+    // @TODO : this.totalAmount = this.totalAmount + (qty * eticket.price);
 
     // @TODO : enregistre le panier
 
@@ -45,7 +45,7 @@ export class BasketService {
     }
     // decremente le nombre total d'articles et recalcule le montant total
     this.totalEtickets--;
-    this.totalAmount = this.totalAmount - eticket.price;
+    // @TODO : this.totalAmount = this.totalAmount - eticket.price;
 
     // @TODO : enregistre le panier
 
