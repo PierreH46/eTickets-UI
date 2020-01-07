@@ -36,6 +36,12 @@ const customr = {
     password: 'password'
 };
 
+interface AddToBasketButton {
+  price: number;
+  typePrice: PriceType;
+  numEtickets: number;
+}
+
 @Component({
   selector: 'app-eticket-item',
   templateUrl: './eticket-item.component.html',
@@ -46,62 +52,69 @@ export class EticketItemComponent implements OnInit {
   @Input() eticket: Eticket;
   // @Input() customer: Customer;
   customer: Customer;
-  numEticketItem: number;
-  profilRates: Rate[] = [];
-  adultRate: Rate = null;
-  childRate: Rate = null;
-  uniqueRate: Rate = null;
+ 
+  rateTypePrice: string;
+
+  // Propriété contenant la liste de tous les boutons à afficher
+  addToBasketButtons: AddToBasketButton[] = [];
 
   constructor(private basketService: BasketService) { }
 
   ngOnInit() {
-    this.numEticketItem = 0; // ToDO - initialiser avec le panier !!
+    // ToDO - initialiser numEtickets avec le panier !!
 
     // this.customer.profil = Profil.EXTERNAL;
     this.customer = customr;
 
-    if (this.customer.profil === Profil.EXTERNAL) {
-      this.profilRates = this.eticket.rates.filter(
-        rate => (rate.typePrice === PriceType.EXTERNAL_ADULT_PRICE) ||
-                (rate.typePrice === PriceType.EXTERNAL_CHILD_PRICE) ||
-                (rate.typePrice === PriceType.EXTERNAL_UNIQUE_PRICE)
-      );
-      console.log('profilRates : ');
-      console.log(this.profilRates);
-      /*
-      var mySubString = str.substring(
-        str.lastIndexOf(":") + 1, 
-        str.lastIndexOf(";")
-        */
-
-    } else {
-      this.profilRates = this.eticket.rates.filter(
-        rate => (rate.typePrice === PriceType.INTERNAL_ADULT_PRICE) ||
-                (rate.typePrice === PriceType.INTERNAL_CHILD_PRICE) ||
-                (rate.typePrice === PriceType.INTERNAL_UNIQUE_PRICE)
-      );
-      console.log('profilRates : ');
-      console.log(this.profilRates);
-    };
-
+    this.addToBasketButtons = this.eticket.rates
+      // Garde uniquement les rates correspondant au profil customer (internal ou external)
+      .filter(rate => this.customer.profil === Profil.EXTERNAL ? isExternal(rate) : isInternal(rate))
+      // Transforme chaque "rate" en infos pour afficher le bouton correspondant
+      .map(rate => ({
+        price: rate.price,
+        typePrice: rate.typePrice,
+        numEtickets: 0,
+      }));
 
   }
 
-  add(event: Event){
+  add(rateTypePrice: string, event: Event) {
+    console.log('add', rateTypePrice);
     event.stopPropagation(); // bloqué la propagation du au fait d'avoir mis
     //      [routerLink]="['/eticket', eticket.slug]" sur la <div> mère 
     //      au lieu de <img> - pas propre => solution navigate ou
     //      choisir que seule la photo permettra de passer à DetailEticket
-    // increment du compteur affiché
-    this.numEticketItem++;
-    // appel à la methode du service 
-    this.basketService.addEticket(this.eticket);
-  };
 
-  remove(event: Event){
-    event.stopPropagation();
-    this.numEticketItem--;
-    this.basketService.removeEticket(this.eticket);
+    // Incrémente le compteur affiché dans l'UI
+    const index = this.addToBasketButtons.findIndex(button => button.typePrice === rateTypePrice);
+    this.addToBasketButtons[index].numEtickets++;
+
+    // Ajoute le ticket au panier
+    this.basketService.addEticket(this.eticket, rateTypePrice);
+
   }
 
+  remove(rateTypePrice: string, event: Event) {
+    event.stopPropagation();
+
+    // Décrémente le compteur affiché dans l'UI
+    const index = this.addToBasketButtons.findIndex(button => button.typePrice === rateTypePrice);
+    this.addToBasketButtons[index].numEtickets--;
+
+    // Ajoute le ticket au panier
+    this.basketService.removeEticket(this.eticket, rateTypePrice);
+  }
+
+}
+
+function isExternal(rate: Rate): boolean {
+  return (rate.typePrice === PriceType.EXTERNAL_ADULT_PRICE) ||
+         (rate.typePrice === PriceType.EXTERNAL_CHILD_PRICE) ||
+         (rate.typePrice === PriceType.EXTERNAL_UNIQUE_PRICE);
+}
+
+function isInternal(rate: Rate): boolean {
+  return (rate.typePrice === PriceType.INTERNAL_ADULT_PRICE) ||
+         (rate.typePrice === PriceType.INTERNAL_CHILD_PRICE) ||
+         (rate.typePrice === PriceType.INTERNAL_UNIQUE_PRICE);
 }
