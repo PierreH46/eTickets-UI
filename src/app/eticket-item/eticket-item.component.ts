@@ -52,7 +52,6 @@ export class EticketItemComponent implements OnInit {
   @Input() eticket: Eticket;
   // @Input() customer: Customer;
   customer: Customer;
- 
   rateTypePrice: string;
 
   // Propriété contenant la liste de tous les boutons à afficher
@@ -81,7 +80,7 @@ export class EticketItemComponent implements OnInit {
   add(rateTypePrice: string, event: Event) {
     console.log('add', rateTypePrice);
     event.stopPropagation(); // bloqué la propagation du au fait d'avoir mis
-    //      [routerLink]="['/eticket', eticket.slug]" sur la <div> mère 
+    //      [routerLink]="['/eticket', eticket.slug]" sur la <div> mère
     //      au lieu de <img> - pas propre => solution navigate ou
     //      choisir que seule la photo permettra de passer à DetailEticket
 
@@ -90,7 +89,7 @@ export class EticketItemComponent implements OnInit {
     this.addToBasketButtons[index].numEtickets++;
 
     // Ajoute le ticket au panier
-    this.basketService.addEticket(this.eticket, rateTypePrice);
+    this.basketService.addEticket(this.eticket);
 
   }
 
@@ -102,7 +101,7 @@ export class EticketItemComponent implements OnInit {
     this.addToBasketButtons[index].numEtickets--;
 
     // Ajoute le ticket au panier
-    this.basketService.removeEticket(this.eticket, rateTypePrice);
+    this.basketService.removeEticket(this.eticket);
   }
 
 }
