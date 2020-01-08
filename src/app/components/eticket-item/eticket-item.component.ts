@@ -84,7 +84,7 @@ export class EticketItemComponent implements OnInit {
     //      au lieu de <img> - pas propre => solution navigate ou
     //      choisir que seule la photo permettra de passer à DetailEticket
 
-    // Incrémente le compteur affiché dans l'UI
+    //  Incrémente le compteur affiché dans l'UI
     const index = this.addToBasketButtons.findIndex(button => button.typePrice === rateTypePrice);
     this.addToBasketButtons[index].numEtickets++;
 
