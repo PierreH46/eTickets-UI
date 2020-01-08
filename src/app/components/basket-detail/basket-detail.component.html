@@ -1,0 +1,48 @@
+<div class="row" *ngIf="eticketInfo.length > 0; else basketEmpty">
+    <div class="col-md-8 offset-md-2">
+
+        <h1>Panier</h1>
+
+        <table class="table">
+            <tbody>
+              <tr *ngFor="let pInfo of eticketInfo; let i = index;">
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ pInfo.eticket.name }} ({{ pInfo.quantity }}) </td>
+                <td>{{ pInfo.rateTypePrice }}  </td>
+                <td>
+                    <p class= "buttons" style="font-size: 20px;">
+                        <i class="far fa-minus-square" (click)="remove(pInfo.eticket,pInfo.rateTypePrice, pInfo.choicePrice, $event)" *ngIf="pInfo.quantity > 0"></i>
+
+                        {{  pInfo.quantity }}
+
+                        <i class="far fa-plus-square" (click)="add(pInfo.eticket,pInfo.rateTypePrice, pInfo.choicePrice, $event)"></i>
+                    </p>
+                </td>
+            <td>{{ (pInfo.choicePrice * pInfo.quantity) | currency:'€' }}</td>
+              </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th scope="col"><h3>{{ getTotalAmount() | currency:'€' }}</h3></th>
+                </tr>
+              </tfoot>
+        </table>
+
+        <button type="button" class="btn btn-primary btn-lg btn-block" (click) = "validBasket(eticketInfo)">
+            Valider le panier
+          </button>
+          <button type="button" class="btn btn-secondary btn-lg btn-block" routerLink="/">
+            Annuler
+          </button>
+
+<ng-template #basketEmpty>
+    <div class="alert alert-info" style="font-size:4em;">
+        Votre panier est vide.<br>
+    <i class="fas fa-cart-plus"></i> Veuillez ajouter des produits.
+    </div>
+</ng-template>
+

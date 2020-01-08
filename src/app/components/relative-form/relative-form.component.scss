@@ -1,0 +1,19 @@
+h1 {
+    position: absolute;
+    top: 4px;
+    left: 100px;
+    font-size: 36px;
+}
+
+button:disabled,
+button[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+  cursor: initial;
+}
+
+button:hover,
+button[hover]{
+    color: #008080;
+    }

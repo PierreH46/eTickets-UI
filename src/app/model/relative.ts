@@ -1,19 +1,22 @@
 export class Relative {
+    constructor(
+        public id: string,
+        public lastname: string,
+        public firstname: string,
+        public email: string,
+        public phoneNumber: string) {}
 
-    lastname: string;
-    firstname: string;
-    email: string;
-    phoneNumber: string;
-
-    constructor(options: {
-        lastname: string;
-        firstname: string;
-        email: string;
-        phoneNumber: string;
-    }) {
-        this.lastname = options.lastname;
-        this.firstname = options.firstname;
-        this.email = options.email;
-        this.phoneNumber = options.phoneNumber;
-    }
+      //  constructor(options: {
+      //   id: string;
+     //    firstname: string;
+     //    lastname: string;
+     //    email: string;
+     //    phoneNumber: string;
+     //   }) {
+     //        this.id = options.id;
+     //        this.firstname = options.firstname;
+     //        this.lastname = options.lastname;
+     //        this.email = options.email;
+     //        this.phoneNumber = options.phoneNumber;
+     //   }
 }

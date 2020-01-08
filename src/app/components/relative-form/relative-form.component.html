@@ -1,0 +1,51 @@
+ <!--Formulaire-->
+ <h1>ENREGISTREMENT DES RELATIVES</h1>
+
+ <form [formGroup]="relativeForm" (ngSubmit)="onSubmit()">
+   <div >
+    <input type="hidden" formControlName="id" >
+</div>
+
+
+<br>
+<div class="shape">
+    <h2> Denomination:</h2>
+    <div class="line">
+        <label>
+            Prénom :
+            <input type="text" formControlName="firstname">
+        </label>
+    </div>
+
+    <div class="line">
+        <label>
+            Nom :
+            <input type="text" formControlName="lastname">
+        </label>
+    </div>
+</div>
+
+<div class="shape">
+    <h2> Contact:</h2>
+    <div class="line">
+        <label>
+            Numero de téléphone :
+            <input type="text" formControlName="phoneNumber">
+        </label>
+    </div>
+
+    <div class="line">
+            <label>
+            Email :
+            <input type="text" formControlName="email">
+        </label>
+    </div>
+
+
+</div>
+
+<div class="line">
+    <button (click)= "testButton()"
+    [disabled]=!relativeForm.valid>Sauvegarder</button>
+</div>
+</form>

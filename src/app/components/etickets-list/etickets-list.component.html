@@ -1,0 +1,17 @@
+
+<h2>Cinema</h2>
+
+<div class= "row">
+    <div class= "col-sm-4" *ngFor="let currentEticket of cinemaEtickets">
+        <app-eticket-item [eticket]="currentEticket"></app-eticket-item>
+    </div>
+</div>
+
+<h2>Loisirs</h2>
+
+<div class= "row">
+    <div class= "col-sm-4" *ngFor="let currentEticket of loisirsEtickets">
+        <app-eticket-item [eticket]="currentEticket"></app-eticket-item>
+    </div>
+</div>
+
