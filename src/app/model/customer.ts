@@ -10,15 +10,16 @@ export enum Profil {
 
 export class Customer {
 
-    public id: string;
-    public lastname: string;
-    public firstname: string;
-    public profil: Profil;
-    public email: string;
-    public phoneNumber: string;
-    public adress: Adress;
-    public relatives: Relative[];
-    public password: string;
+    id: string;
+    lastname: string;
+    firstname: string;
+    profil: Profil;
+    email: string;
+    phoneNumber: string;
+    adress: Adress;
+    relatives: Relative[];
+    password: string;
+    authdata?: string;
 
     constructor(options: CustomerOptions) {
         this.id= options.id;

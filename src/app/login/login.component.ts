@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { AuthenticationService } from '@app/services/authentication.service';
+import { Customer } from '@app/model/customer';
 
 
 @Component({ templateUrl: 'login.component.html' })
@@ -12,6 +13,7 @@ export class LoginComponent implements OnInit {
     submitted = false;
     returnUrl: string;
     error = '';
+    usercust :Customer;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -38,7 +40,8 @@ export class LoginComponent implements OnInit {
     // convenience getter for easy access to form fields
     get f() { return this.loginForm.controls; }
 
-    onSubmit() {
+    //onSubmit() {
+    submit(){
         this.submitted = true;
 
         // stop here if form is invalid
@@ -48,10 +51,17 @@ export class LoginComponent implements OnInit {
 
         this.loading = true;
         this.authenticationService.login(this.f.username.value, this.f.password.value)
-            .pipe(first())
+            //.pipe(first())
             .subscribe(
-                data => {
+                data => {this.usercust=data;
+                    console.log(this.usercust.email+' '+this.usercust.profil);
+                    if (this.f.password.value===this.usercust.password){
                     this.router.navigate([this.returnUrl]);
+                    }
+                    else {this.error='Invalid password';
+                         this.loading = false;
+                        this.router.navigate(['login']);
+                    }
                 },
                 error => {
                     this.error = error;
