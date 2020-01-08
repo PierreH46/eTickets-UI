@@ -23,7 +23,7 @@ import { LoginComponent } from './login/login.component';
 import { BasketDetailComponent } from './components/basket-detail/basket-detail.component';
 import { RelativeListComponent } from './components/relative-list/relative-list.component';
 import { RelativeFormComponent } from './components/relative-form/relative-form.component';
-// import {TableModule} from 'primeng/table';
+import {TableModule} from 'primeng/table';
 
 
 @NgModule({
@@ -45,7 +45,7 @@ import { RelativeFormComponent } from './components/relative-form/relative-form.
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    // TableModule
+    TableModule
   ],
   providers: [
     // { provide: 'BACKEND_URL', useValue: 'http://localhost:3004'}, // JsonServer

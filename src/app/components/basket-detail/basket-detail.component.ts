@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Eticket } from '@app/model/eticket';
 import { BasketService } from '@app/services/basket.service';
 import { Basket } from '@app/model/basket';
+import { AuthenticationService } from '@app/services/authentication.service';
 
 @Component({
   selector: 'app-basket-detail',
@@ -14,15 +15,18 @@ export class BasketDetailComponent implements OnInit {
   totalAmount: number;
   totalEtickets: number;
   basket: Basket;
+
   customerId = 999;
 
-  constructor(private basketService: BasketService) { }
+  constructor(private basketService: BasketService, private autent: AuthenticationService) { }
 
   ngOnInit() {
     this.eticketInfo = this.basketService.eticketInfo;
     this.totalEtickets = this.basketService.totalEtickets;
   }
 
+   customer = this.autent.currentUser;
+  //  console.log('dans le basket', customer);
   getTotalAmount() {
     return this.basketService.totalAmount;
   }
@@ -46,13 +50,12 @@ export class BasketDetailComponent implements OnInit {
   }
 
   validBasket() {
+    console.log(this.eticketInfo);
+    this.eticketInfo.forEach (c => {
+      this.basket = new Basket (null, c.quantity,false, null, c.eticket.name, c.choicePrice, null, null );
+      console.log('basket', this.basket);
 
-    this.eticketInfo.forEach (c =>
-          {this.basket.price = c.choicePrice;
-           this.basket.quantity = c.quantity;
-           this.basket.reference = c.eticket.name;
-
-           this.basketService.addBasket( this.basket, this.customerId ).subscribe(
+      this.basketService.addBasket( this.basket, this.customerId ).subscribe(
             () => {
             console.log('Suceees creation');
             },
