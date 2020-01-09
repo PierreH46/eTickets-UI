@@ -5,37 +5,6 @@ import { Customer, Profil } from '@app/model/customer';
 import { Rate, PriceType } from '@app/model/rate';
 import { AuthenticationService } from '@app/services/authentication.service';
 
-const customr = {
-  id: '12',
-  lastname: 'toto',
-  firstname: 'titi',
-  profil: Profil.EXTERNAL,
-  email: 'ludo@gmail.com',
-  phoneNumber: '0671878998',
-  adress: {
-      num: 6,
-      street: 'rue docteur Strauss',
-      postalCode: 98500,
-      city: 'ORION'
-    },
-  relatives: [
-      {
-        id: '1',
-        lastname: 'GENE_Ludo_1',
-        firstname: 'CARLOTTINE',
-        email: 'genev@gmail.com',
-        phoneNumber: '0671872457'
-      },
-      {
-        id: '2',
-        lastname: 'MORILLE_Ludo_1',
-        firstname: 'LUDOVIC',
-        email: 'MORILLE@gmail.com',
-        phoneNumber: '0674552457'
-      }
-    ],
-    password: 'password'
-};
 
 interface AddToBasketButton {
   price: number;
@@ -51,7 +20,6 @@ interface AddToBasketButton {
 export class EticketItemComponent implements OnInit {
 
   @Input() eticket: Eticket;
-  // @Input() customer: Customer;
   customer: Customer;
 
   rateTypePrice: string;
@@ -65,8 +33,6 @@ export class EticketItemComponent implements OnInit {
   ngOnInit() {
     // ToDO - initialiser numEtickets avec le panier !!
 
-    // this.customer.profil = Profil.EXTERNAL;
-    //this.customer = customr;
     this.customer = this.autent.currentUserValue;
     this.addToBasketButtons = this.eticket.rates
       // Garde uniquement les rates correspondant au profil customer (internal ou external)
@@ -77,7 +43,6 @@ export class EticketItemComponent implements OnInit {
         typePrice: rate.typePrice,
         numEtickets: 0,
       }));
-
   }
 
   add(rateTypePrice: string, choicePrice: number, event: Event) {
@@ -92,7 +57,6 @@ export class EticketItemComponent implements OnInit {
 
     // Ajoute le ticket au panier
     this.basketService.addEticketMix(this.eticket, rateTypePrice, choicePrice);
-
   }
 
   remove(rateTypePrice: string, choicePrice: number, event: Event) {
@@ -105,7 +69,6 @@ export class EticketItemComponent implements OnInit {
     // Ajoute le ticket au panier
     this.basketService.removeEticketMix(this.eticket, rateTypePrice, choicePrice);
   }
-
 }
 
 function isExternal(rate: Rate): boolean {

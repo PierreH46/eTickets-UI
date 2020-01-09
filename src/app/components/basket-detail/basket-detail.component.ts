@@ -65,7 +65,7 @@ export class BasketDetailComponent implements OnInit {
  //     this.basket.reference = c.eticket.name;
  //     this.basket.price = c.choicePrice;
 //      this.basket.typePrice = c.rateTypePrice;
-      this.basket.purchaseDate = this.date;
+ //     this.basket.purchaseDate = this.date;
       this.basket = new Basket (null, c.quantity, false, c.eticket.category, c.eticket.name,
         c.choicePrice, /*c.rateTypePrice*/ null, this.date );
       console.log('basket', this.basket);
