@@ -15,8 +15,7 @@ export class BasketService {
   eticketInfo: Array<{ eticket: Eticket, rateTypePrice: string, choicePrice: number, quantity: number; }> = []; // tableau initialisé à vide
   totalAmount: number;
   totalEtickets: number;
-  //customer: Customer;
-
+ 
   constructor(private eticketService: EticketService, private http: HttpClient,
               private autent: AuthenticationService) {
     this.initBasket();
@@ -97,7 +96,7 @@ export class BasketService {
   }
 
  // POST : add a new relative to the server */
-addBasket(basket: Basket, customerId): Observable<string> {
+addBasket(basket: Basket, customerId: string): Observable<string> {
   return this.http.post<string>('http://localhost:8080/customers/' + customerId +
   '/basket2', basket);
   }

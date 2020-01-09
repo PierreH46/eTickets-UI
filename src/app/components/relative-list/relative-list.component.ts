@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Relative } from '@app/model/relative';
 import { RelativeService } from '@app/services/relative.service';
+import { Customer } from '@app/model/customer';
+import { AuthenticationService } from '@app/services/authentication.service';
 
 @Component({
   selector: 'app-relative-list',
@@ -10,14 +12,16 @@ import { RelativeService } from '@app/services/relative.service';
 export class RelativeListComponent implements OnInit {
 
   relatives: Relative[] = [];
-  customerId = 999;
+  customer: Customer;
 
-  constructor(private relativeService: RelativeService) { }
+  constructor(private relativeService: RelativeService, private autent: AuthenticationService) {
+    this.customer = this.autent.currentUserValue;
+  }
 
   ngOnInit() {
-    this.relativeService.getAllRelatives(this.customerId).subscribe( (toto) => {
+    this.relativeService.getAllRelatives(this.customer.id).subscribe( (toto) => {
       this.relatives = toto;
-      console.log(this.customerId);
+      console.log(this.customer.id);
       });
 
   }

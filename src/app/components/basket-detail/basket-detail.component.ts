@@ -3,6 +3,7 @@ import { Eticket } from '@app/model/eticket';
 import { BasketService } from '@app/services/basket.service';
 import { Basket } from '@app/model/basket';
 import { AuthenticationService } from '@app/services/authentication.service';
+import { Customer } from '@app/model/customer';
 
 @Component({
   selector: 'app-basket-detail',
@@ -15,17 +16,17 @@ export class BasketDetailComponent implements OnInit {
   totalAmount: number;
   totalEtickets: number;
   basket: Basket;
-
-  customerId = 999;
+  customer: Customer;
 
   constructor(private basketService: BasketService, private autent: AuthenticationService) { }
 
   ngOnInit() {
     this.eticketInfo = this.basketService.eticketInfo;
     this.totalEtickets = this.basketService.totalEtickets;
+    this.customer = this.autent.currentUserValue;
   }
 
-   customer = this.autent.currentUser;
+
   //  console.log('dans le basket', customer);
   getTotalAmount() {
     return this.basketService.totalAmount;
@@ -52,10 +53,11 @@ export class BasketDetailComponent implements OnInit {
   validBasket() {
     console.log(this.eticketInfo);
     this.eticketInfo.forEach (c => {
-      this.basket = new Basket (null, c.quantity,false, null, c.eticket.name, c.choicePrice, null, null );
+      this.basket = new Basket (null, c.quantity, false, null, c.eticket.name, c.choicePrice, null, null );
       console.log('basket', this.basket);
+      console.log('customer', this.customer);
 
-      this.basketService.addBasket( this.basket, this.customerId ).subscribe(
+      this.basketService.addBasket( this.basket, this.customer.id ).subscribe(
             () => {
             console.log('Suceees creation');
             },
@@ -63,7 +65,6 @@ export class BasketDetailComponent implements OnInit {
               console.log('une erreur est arrive : ' + error.error[0] + this.gestionError(error.error[0]));
             },
           );
-
   });
 }
 gestionError(erreur: string) {
