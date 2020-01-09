@@ -1,5 +1,5 @@
 <h2>liste de relative </h2>
- <!--<p-table [value]="relatives" [paginator]="true" [rows]="3">
+ <p-table [value]="relatives" [paginator]="true" [rows]="5">
     <ng-template pTemplate="header">
         <tr>
             <th>Prenom</th>
@@ -21,26 +21,4 @@
 
     </ng-template>
 </p-table>
- -->
-
- <table class="table">
-      <tbody>
-        <tr>
-            <td>Index</td>
-            <td>Prenom</td>
-            <td>Nom</td>
-            <td>Email</td>
-            <td>Phone Number</td>
-            <td>Action</td>
-        </tr>
-      <tr *ngFor="let relative of relatives; let i = index;">
-        <th scope="row"> {{ i }}</th>
-        <td>{{relative.firstname}} </td>
-        <td>{{relative.lastname}} </td>
-        <td>{{relative.email}} </td>
-        <td>{{relative.phoneNumber}} </td>
-
-      </tr>
-    </tbody>
-</table>
 

@@ -3,6 +3,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Relative } from '@app/model/relative';
 import { RelativeService } from '@app/services/relative.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Customer } from '@app/model/customer';
+import { AuthenticationService } from '@app/services/authentication.service';
 
 @Component({
   selector: 'app-relative-form',
@@ -20,7 +22,7 @@ export class RelativeFormComponent implements OnInit {
   });
 
   relative: Relative;
-  customerId = 999;
+  customer: Customer;
 
   get id() { return this.relativeForm.get('id'); }
   get firstname() { return this.relativeForm.get('firstname'); }
@@ -29,8 +31,10 @@ export class RelativeFormComponent implements OnInit {
   get phoneNumber() { return this.relativeForm.get('phoneNumber'); }
 
   constructor(private relativeService: RelativeService,
-              private route: ActivatedRoute,
-              private router: Router)   { }
+              private route: ActivatedRoute, private router: Router,
+              private autent: AuthenticationService)   {
+                this.customer = this.autent.currentUserValue;
+              }
 
   ngOnInit() {
     // inforamtion pour le get
@@ -70,7 +74,7 @@ export class RelativeFormComponent implements OnInit {
     console.log(relativeDTO);
 
     if (relativeDTO.id === undefined || relativeDTO.id === '' || relativeDTO.id === null) {
-      this.relativeService.addRelative( relativeDTO, this.customerId ).subscribe(
+      this.relativeService.addRelative( relativeDTO, this.customer.id ).subscribe(
         () => {
         console.log('Suceees creation');
         this.router.navigate(['/listeRelative']);
@@ -82,7 +86,7 @@ export class RelativeFormComponent implements OnInit {
 
     } else {
       // tslint:disable-next-line: deprecation
-    this.relativeService.updateRelative(relativeDTO, this.customerId).subscribe(
+    this.relativeService.updateRelative(relativeDTO, this.customer.id).subscribe(
       () => {
         console.log('Suceees update');
         this.router.navigate(['/listeRelative']);

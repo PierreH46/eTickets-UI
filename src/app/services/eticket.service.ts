@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Eticket } from '../model/eticket';
+import { TypePrice } from '@app/model/basket';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,8 @@ export class EticketService {
           )
       );
   }
-
-
+// POST : update a relative to the server
+//updateStockEticket(quantity: number, eticketId, typePrice: TypePrice): Observable<any> {
+//  return this.http.put<Eticket>('http://localhost:8080/etickets/' + eticketId + '/rates/' + typePrice + '/stock/' + quantity,ete);
+//  }
 }

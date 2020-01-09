@@ -4,6 +4,8 @@ import { EticketService } from './eticket.service';
 import { Basket } from '@app/model/basket';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { AuthenticationService } from './authentication.service';
+import { Customer } from '@app/model/customer';
 
 @Injectable({
   providedIn: 'root'
@@ -14,10 +16,10 @@ export class BasketService {
   totalAmount: number;
   totalEtickets: number;
 
-  constructor(private eticketService: EticketService, private http: HttpClient) {
+  constructor(private eticketService: EticketService, private http: HttpClient,
+              private autent: AuthenticationService) {
     this.initBasket();
    }
-
 
   addEticketMix(eticket: Eticket, rateTypePrice: string, choicePrice: number, qty: number = 1) {
     // le produit en cours est-il déjà dans le panier ? à quelle position pour pouvoir le mettre à jour
@@ -94,8 +96,9 @@ export class BasketService {
   }
 
  // POST : add a new relative to the server */
-addBasket(basket: Basket, customerId): Observable<string> {
+addBasket(basket: Basket, customerId: string): Observable<string> {
   return this.http.post<string>('http://localhost:8080/customers/' + customerId +
   '/basket2', basket);
   }
+
 }

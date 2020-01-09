@@ -8,20 +8,17 @@
       Gestion des contacts
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" href="#">Liste des relatives</a>
-      <a class="dropdown-item" href="#">Creer une relative</a>
+      <a class="dropdown-item" href="/listeRelative">Liste des relatives</a>
+      <a class="dropdown-item" href="/nouveauRelative">Creer une relative</a>
       <a class="dropdown-item" href="#">Something else here</a>
     </div>
   </div>
-  <div class="menuside">
-    <ul>
-
-      <li><a routerLink="/listeRelative">Liste des relatives</a> </li>
-     <li><a routerLink="/nouveauRelative">Creer une relative</a> </li>
-     </ul>
-  </div>
   
   <div class="ml-auto">
+
+  <app-basket-icon-relative></app-basket-icon-relative>
+  </div>
+  <div>
     <app-basket-icon></app-basket-icon>
   </div>
 
