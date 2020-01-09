@@ -1,7 +1,7 @@
 <div class="card eticket" [routerLink]="['/eticket', eticket.id]">
     <img [src]="eticket.image" class="card-img-top" style="width: 318px; height: 240px; " alt="">
     <div class="card-body">
-        <h5 class="card-title">{{ eticket.name }} </h5>
+        <h5 class="card-title">{{ eticket.name }}</h5>
         <p class= "card-text"> {{ eticket.description.substring(0,30) }} ... </p>
 
         <div *ngFor="let button of addToBasketButtons">

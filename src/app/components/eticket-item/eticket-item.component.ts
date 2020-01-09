@@ -3,6 +3,7 @@ import { Eticket } from '../../model/eticket';
 import { BasketService } from '../../services/basket.service';
 import { Customer, Profil } from '@app/model/customer';
 import { Rate, PriceType } from '@app/model/rate';
+import { AuthenticationService } from '@app/services/authentication.service';
 
 const customr = {
   id: '12',
@@ -58,13 +59,14 @@ export class EticketItemComponent implements OnInit {
   // Propriété contenant la liste de tous les boutons à afficher
   addToBasketButtons: AddToBasketButton[] = [];
 
-  constructor(private basketService: BasketService) { }
+  constructor(private basketService: BasketService,
+              private autent: AuthenticationService) { }
 
   ngOnInit() {
     // ToDO - initialiser numEtickets avec le panier !!
 
     // this.customer.profil = Profil.EXTERNAL;
-    this.customer = customr;
+    this.customer = this.autent.currentUserValue;
 
     this.addToBasketButtons = this.eticket.rates
       // Garde uniquement les rates correspondant au profil customer (internal ou external)
