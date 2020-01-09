@@ -2,10 +2,10 @@ import { EticketOptions } from './eticket-options';
 import { Rate } from './rate';
 
 export enum Category {
-    CINEMA,
-    LOISIRS,
-    THEATRE,
-    CONCERT
+    CINEMA = 'CINEMA',
+    LOISIRS = 'LOISIRS',
+    THEATRE = 'THEATRE',
+    CONCERT =  'CONCERT'
 }
 
 export class Eticket {

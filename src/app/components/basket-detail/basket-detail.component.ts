@@ -12,11 +12,14 @@ import { Customer } from '@app/model/customer';
 })
 export class BasketDetailComponent implements OnInit {
 
-  eticketInfo: Array<{ eticket: Eticket, rateTypePrice: string, choicePrice: number, quantity: number; }> = []; // tableau initialisé à vide
+  // tableau de commande initialisé à vide
+  eticketInfo: Array<{ eticket: Eticket, rateTypePrice: string, choicePrice: number, quantity: number; }> = [];
   totalAmount: number;
   totalEtickets: number;
   basket: Basket;
+ // basket = new Basket;
   customer: Customer;
+  date = new Date();
 
   constructor(private basketService: BasketService, private autent: AuthenticationService) { }
 
@@ -53,14 +56,23 @@ export class BasketDetailComponent implements OnInit {
   validBasket() {
     console.log(this.eticketInfo);
     this.eticketInfo.forEach (c => {
-      this.basket = new Basket (null, c.quantity, false, null, c.eticket.name, c.choicePrice, null, null );
+ //     this.basket = new Basket (null, c.quantity, false, c.eticket.category, c.eticket.name, c.choicePrice, c.rateTypePrice, this.date );
+ //     this.basket = new Basket();
+ //     this.basket.id = null;
+ //     this.basket.quantity = c.quantity;
+ //     this.basket.status = false;
+ //     this.basket.category = c.eticket.category;
+ //     this.basket.reference = c.eticket.name;
+ //     this.basket.price = c.choicePrice;
+//      this.basket.typePrice = c.rateTypePrice;
+      this.basket.purchaseDate = this.date;
+      this.basket = new Basket (null, c.quantity, false, c.eticket.category, c.eticket.name,
+        c.choicePrice, /*c.rateTypePrice*/ null, this.date );
       console.log('basket', this.basket);
       console.log('customer', this.customer);
 
       this.basketService.addBasket( this.basket, this.customer.id ).subscribe(
-            () => {
-            console.log('Suceees creation');
-            },
+            () => {console.log('Suceees creation');},
             (error) => {
               console.log('une erreur est arrive : ' + error.error[0] + this.gestionError(error.error[0]));
             },

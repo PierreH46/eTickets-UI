@@ -15,7 +15,7 @@ export class BasketService {
   eticketInfo: Array<{ eticket: Eticket, rateTypePrice: string, choicePrice: number, quantity: number; }> = []; // tableau initialisé à vide
   totalAmount: number;
   totalEtickets: number;
- 
+
   constructor(private eticketService: EticketService, private http: HttpClient,
               private autent: AuthenticationService) {
     this.initBasket();
@@ -100,4 +100,5 @@ addBasket(basket: Basket, customerId: string): Observable<string> {
   return this.http.post<string>('http://localhost:8080/customers/' + customerId +
   '/basket2', basket);
   }
+
 }
