@@ -78,7 +78,7 @@ export class BasketDetailComponent implements OnInit {
                     console.log('index' , index);
            //         console.log('rate price' , this.rate.price );
                     console.log('rate choice' , c.choicePrice );
-        //            this.rate.price = c.choicePrice;
+                    this.rate.price = c.choicePrice;
                     this.rate.typePrice = c.rateTypePrice;
                     this.rate.quantity = rates[index].quantity - c.quantity;
                     console.log('rate' , this.rate);

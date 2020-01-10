@@ -11,10 +11,10 @@ interface AddToBasketButton {
   typePrice: TypePrice;
   numEtickets: number;
 }
-interface AddToBasketButton2 {
-  rateAdd: Rate;
-  numEtickets: number;
-}
+//interface AddToBasketButton2 {
+//  rateAdd: Rate;
+//  numEtickets: number;
+//}
 
 @Component({
   selector: 'app-eticket-item',
@@ -31,7 +31,7 @@ export class EticketItemComponent implements OnInit {
 
   // Propriété contenant la liste de tous les boutons à afficher
   addToBasketButtons: AddToBasketButton[] = [];
-  addToBasketButtons2: AddToBasketButton2[] = [];
+  //addToBasketButtons2: AddToBasketButton2[] = [];
 
   constructor(private basketService: BasketService,
               private autent: AuthenticationService) { }
