@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { BasketDetailComponent } from './components/basket-detail/basket-detail.component';
 import { RelativeListComponent } from './components/relative-list/relative-list.component';
 import { RelativeFormComponent } from './components/relative-form/relative-form.component';
+import { CustomerDetailComponent } from './components/customer-detail/customer-detail.component';
 
 
 
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'listeRelative', component: RelativeListComponent },
   { path: 'nouveauRelative', component: RelativeFormComponent },
   { path: 'panier', component: BasketDetailComponent },
+  { path: 'client', component: CustomerDetailComponent },
         // otherwise redirect to home
   { path: '**', redirectTo: '' }
 //  {path: '', redirectTo: 'etickets', pathMatch: 'full' },
@@ -23,7 +25,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

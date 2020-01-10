@@ -25,6 +25,7 @@ import { RelativeListComponent } from './components/relative-list/relative-list.
 import { RelativeFormComponent } from './components/relative-form/relative-form.component';
 import {TableModule} from 'primeng/table';
 import { BasketIconRelativeComponent } from './components/basket-icon-relative/basket-icon-relative.component';
+import { CustomerDetailComponent } from './components/customer-detail/customer-detail.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { BasketIconRelativeComponent } from './components/basket-icon-relative/b
     BasketDetailComponent,
     RelativeListComponent,
     RelativeFormComponent,
-    BasketIconRelativeComponent
+    BasketIconRelativeComponent,
+    CustomerDetailComponent
   ],
   imports: [
     BrowserModule,

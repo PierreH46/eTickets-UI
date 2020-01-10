@@ -14,14 +14,16 @@ export class RelativeListComponent implements OnInit {
   relatives: Relative[] = [];
   customer: Customer;
 
-  constructor(private relativeService: RelativeService, private autent: AuthenticationService) {
-    this.customer = this.autent.currentUserValue;
+  constructor(private relativeService: RelativeService,
+              private autent: AuthenticationService) {
+
   }
 
   ngOnInit() {
+    this.customer = this.autent.currentUserValue;
     this.relativeService.getAllRelatives(this.customer.id).subscribe( (toto) => {
       this.relatives = toto;
-      console.log(this.customer.id);
+      console.log(this.customer.id, this.relatives);
       });
 
   }

@@ -1,0 +1,103 @@
+<p>customer-detail works!</p>
+<p>customer-detail works!</p>
+
+<div class="container">
+  
+    <p *ngIf="isLoading; else showCustomer">Chargement en cours...</p>
+
+    <ng-template #showCustomer>
+        <p class="col text-center">
+            <button class="btn btn-secondary" (click)="gotoEticketList($event)" style="margin-right: 150px;">Retour à la liste</button>
+            <button class="btn btn-warning" (click)="logout()">Se déconnecter</button>
+        </p>
+        <h4 class="col text-center">Vous êtes identifié avec votre adresse email : {{ customer.email }}.</h4>
+
+
+        <div class="row" style="margin-block-start: 50px;">
+            <div class="col-md-8 offset-md-2">
+        
+                <h2>Détails Client</h2>
+
+                <table class="table table-sm">
+                    <tbody>
+                        <tr>
+                            <th scope="row">A RETIRER DE LA LIVRAISON</th>
+                            <td> {{ customer.profil }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Nom</th>
+                            <td> {{ customer.lastname }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Prénom</th>
+                            <td> {{ customer.firstname }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Adresse email</th>
+                            <td> {{ customer.email }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Téléphone</th>
+                            <td> {{ customer.phoneNumber }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" colspan="4">Adresse</th>
+                            <td> {{ customer.adress.num }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"></th>
+                            <td> {{ customer.adress.street }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"></th>
+                            <td> {{ customer.adress.postalCode }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"></th>
+                            <td> {{ customer.adress.city }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                
+
+            </div>
+        </div>
+        
+        <div class="row">
+
+            <div>
+                <img src="/assets/ami.png" class="card-img-top" style="width: 108px; height: 105px; " alt="">
+                <span style="font-size: 30px;" >Votre Liste de proches </span>
+                
+                <p-table [value]="relatives" [paginator]="true" [rows]="5" *ngIf="relatives.length > 0">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>Prenom</th>
+                            <th>Nom</th>
+                            <th>Email</th>
+                            <th>Phone Number</th>
+                        </tr>
+                    </ng-template>
+                
+                    <ng-template pTemplate="body" let-relative>
+                        <tr>
+                            <td>{{relative.firstname}}</td>
+                            <td>{{relative.lastname}}</td>
+                            <td>{{relative.email}}</td>
+                            <td>{{relative.phoneNumber}}</td>
+                        </tr>
+                
+                    </ng-template>
+                </p-table>
+
+                <p class= "buttons" style="padding-top: 5px;">
+                    <button class="btn btn-success" (click)="gotoRelativeForm($event)">Ajouter un proche</button>
+                </p>
+
+            </div>
+        
+        
+        </div>
+    </ng-template>
+</div>

@@ -77,7 +77,7 @@ export class RelativeFormComponent implements OnInit {
       this.relativeService.addRelative( relativeDTO, this.customer.id ).subscribe(
         () => {
         console.log('Suceees creation');
-        this.router.navigate(['/listeRelative']);
+        this.router.navigate(['/client']);
         },
         (error) => {
           console.log('une erreur est arrive : ' + error.error[0] + this.gestionError(error.error[0]));
@@ -89,7 +89,7 @@ export class RelativeFormComponent implements OnInit {
     this.relativeService.updateRelative(relativeDTO, this.customer.id).subscribe(
       () => {
         console.log('Suceees update');
-        this.router.navigate(['/listeRelative']);
+        this.router.navigate(['/client']);
       },
       (error) => {
         console.log('une erreur est arrive : ' + error.error[0] + this.gestionError(error.error[0]));
