@@ -19,9 +19,8 @@ export class RelativeListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.relativeService.getAllRelatives(this.customer.id).subscribe( (toto) => {
-      this.relatives = toto;
-      console.log(this.customer.id);
+    this.relativeService.getAllRelatives(this.customer.id).subscribe( (relatives) => {
+      this.relatives = relatives;
       });
 
   }

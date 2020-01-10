@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Eticket, Category } from '../../model/eticket';
 import { EticketService } from '../../services/eticket.service';
+import { BasketService } from '@app/services/basket.service';
 
 @Component({
   selector: 'app-etickets-list',
@@ -17,9 +18,12 @@ export class EticketsListComponent implements OnInit {
   concertEtickets: Eticket[];
 
 
-  constructor(private eticketService: EticketService) { }
+  constructor(private eticketService: EticketService, private basketService: BasketService) { }
 
   ngOnInit() {
+  //  if (this.basketService.isValid) {
+  //    return this.basketService.initBasket();
+  //  }
     this.eticketService.getAllEtickets()
       .subscribe(listEtickets => {
         this.etickets = listEtickets;
@@ -28,6 +32,7 @@ export class EticketsListComponent implements OnInit {
         this.theatreEtickets = this.etickets.filter(e => e.category === Category.THEATRE);
         this.concertEtickets = this.etickets.filter(e => e.category === Category.CONCERT);
       });
+
   }
 
 }

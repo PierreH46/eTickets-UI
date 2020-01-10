@@ -1,4 +1,4 @@
-export enum PriceType {
+export enum TypePrice {
     INTERNAL_CHILD_PRICE = "INTERNAL_CHILD_PRICE",
     EXTERNAL_CHILD_PRICE = "EXTERNAL_CHILD_PRICE",
     INTERNAL_ADULT_PRICE = "INTERNAL_ADULT_PRICE",
@@ -10,7 +10,7 @@ export enum PriceType {
 export class Rate {
 
     // public priceType: PriceType;
-    public typePrice: PriceType;
+    public typePrice: TypePrice;
     public price: number;
     // public stock: number;
     public quantity: number;
@@ -23,22 +23,22 @@ export class Rate {
     }) {
         switch (options.typePrice) {
             case 'INTERNAL_CHILD_PRICE':
-                this.typePrice = PriceType.INTERNAL_CHILD_PRICE;
+                this.typePrice = TypePrice.INTERNAL_CHILD_PRICE;
                 break;
             case 'EXTERNAL_CHILD_PRICE':
-                this.typePrice = PriceType.EXTERNAL_CHILD_PRICE;
+                this.typePrice = TypePrice.EXTERNAL_CHILD_PRICE;
                 break;
             case 'INTERNAL_ADULT_PRICE':
-                this.typePrice = PriceType.INTERNAL_ADULT_PRICE;
+                this.typePrice = TypePrice.INTERNAL_ADULT_PRICE;
                 break;
             case 'EXTERNAL_ADULT_PRICE':
-                this.typePrice = PriceType.EXTERNAL_ADULT_PRICE;
+                this.typePrice = TypePrice.EXTERNAL_ADULT_PRICE;
                 break;
             case 'INTERNAL_UNIQUE_PRICE':
-                this.typePrice = PriceType.INTERNAL_UNIQUE_PRICE;
+                this.typePrice = TypePrice.INTERNAL_UNIQUE_PRICE;
                 break;
             case 'EXTERNAL_UNIQUE_PRICE':
-                this.typePrice = PriceType.EXTERNAL_UNIQUE_PRICE;
+                this.typePrice = TypePrice.EXTERNAL_UNIQUE_PRICE;
                 break;
         }
         this.price = options.price;

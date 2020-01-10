@@ -30,7 +30,7 @@ export class Basket {
  //   public typePrice: TypePrice;
  //   public purchaseDate: Date;
 
-//constructor(options: BasketOptions) {
+// constructor(options: BasketOptions) {
 //    this.id = options.id;
 //    this.quantity = options.quantity;
 //    this.status = options.status;

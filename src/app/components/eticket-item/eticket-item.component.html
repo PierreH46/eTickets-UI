@@ -12,29 +12,30 @@
                 <p class= "buttons" style="font-size: 20px;">
                     <i class="far fa-minus-square" (click)="remove(button.typePrice, button.price, $event)" *ngIf="button.numEtickets > 0"></i>
 
-                    {{ button.numEtickets }}
+                    {{ button.numEtickets }} {{numTik}}
 
                     <i class="far fa-plus-square" (click)="add(button.typePrice, button.price, $event)"></i>
                 </p>
-
             </div>
-
         </div>
-        <p>
-            <!-- <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-               Link with href
-             </a>-->
-             <button class="btn btn-primary" type="button" data-toggle="collapse"
-             data-target="#collapseExample" aria-expanded="false" aria-controls="collapseDescription">
-               Informations
-             </button>
-           </p>
-        {{eticket.description}}
-
-
-          <div class="collapse" id="collapseDescription">
-            <div class="card card-body">
-              {{eticket.description}}
-
     </div>
 </div>
+<p>
+    <!-- <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+       Link with href
+     </a>-->
+     <button class="btn btn-primary" type="button" data-toggle="collapse"
+     data-target="#collapseExample" aria-expanded="false" aria-controls="collapseDescription">
+       Informations
+     </button>
+   </p>
+  <div class="collapse" id="collapseDescription">
+    <div class="card card-body">
+      {{eticket.description}}
+    </div>
+</div>
+<!--<button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="bottom" data-content= '{{eticket.description}}'>
+  Popover on bottom
+</button>  -->
+
+{{eticket.description}}

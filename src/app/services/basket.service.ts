@@ -6,22 +6,26 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { AuthenticationService } from './authentication.service';
 import { Customer } from '@app/model/customer';
+import { TypePrice } from '@app/model/rate';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BasketService {
 
-  eticketInfo: Array<{ eticket: Eticket, rateTypePrice: string, choicePrice: number, quantity: number; }> = []; // tableau initialisé à vide
+  eticketInfo: Array<{ eticket: Eticket, rateTypePrice: TypePrice,
+    choicePrice: number, quantity: number; }> = []; // tableau initialisé à vide
   totalAmount: number;
   totalEtickets: number;
+  isValid: boolean;
 
   constructor(private eticketService: EticketService, private http: HttpClient,
               private autent: AuthenticationService) {
     this.initBasket();
+    this.isValid = false;
    }
 
-  addEticketMix(eticket: Eticket, rateTypePrice: string, choicePrice: number, qty: number = 1) {
+  addEticketMix(eticket: Eticket, rateTypePrice: TypePrice, choicePrice: number, qty: number = 1) {
     // le produit en cours est-il déjà dans le panier ? à quelle position pour pouvoir le mettre à jour
     const index = this.eticketInfo.findIndex(pInfo =>
       ((pInfo.eticket.id === eticket.id) && (pInfo.rateTypePrice === rateTypePrice)));
@@ -42,7 +46,7 @@ export class BasketService {
 
   }
 
-  removeEticketMix(eticket: Eticket, rateTypePrice: string, choicePrice: number) {
+  removeEticketMix(eticket: Eticket, rateTypePrice: TypePrice, choicePrice: number) {
     // le produit en cours est-il déjà dans le panier ? à quelle position pour pouvoir le mettre à jour
     const index = this.eticketInfo.findIndex(pInfo =>
       ((pInfo.eticket.id === eticket.id) && (pInfo.rateTypePrice === rateTypePrice)));
@@ -60,6 +64,19 @@ export class BasketService {
 
     this.saveBasket();
   }
+
+  // Renvoie le nb d'unités dans le panier pour un produit précis
+  getNumForEticket(eticketId: string,rateTypePrice: TypePrice): number {
+    console.log('typePrice', rateTypePrice);
+    console.log('pinfo', this.eticketInfo);
+    const index = this.eticketInfo.findIndex(pInf =>
+      ((pInf.eticket.id === eticketId) && (pInf.rateTypePrice === rateTypePrice)));
+    if (index !== -1) { // trouvé
+      console.log('quantity',this.eticketInfo[index].quantity );
+      return this.eticketInfo[index].quantity;
+      } else { return 0; }
+        }
+      
 
   saveBasket() {
     // - Crée la version sérialisable avec Array.push()
@@ -79,6 +96,7 @@ export class BasketService {
     this.eticketInfo = [];
     this.totalAmount = 0;
     this.totalEtickets = 0;
+    this.isValid = false;
 
     const storedBasket = localStorage.getItem('basket');
 
@@ -99,6 +117,6 @@ export class BasketService {
 addBasket(basket: Basket, customerId: string): Observable<string> {
   return this.http.post<string>('http://localhost:8080/customers/' + customerId +
   '/basket2', basket);
-  }
+   }
 
 }
