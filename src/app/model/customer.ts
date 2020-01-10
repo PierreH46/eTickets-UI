@@ -4,8 +4,8 @@ import { CustomerOptions } from './customer-options';
 
 
 export enum Profil {
-    INTERNAL,
-    EXTERNAL
+    INTERNAL = 'INTERNAL',
+    EXTERNAL = 'EXTERNAL'
 }
 
 export class Customer {
