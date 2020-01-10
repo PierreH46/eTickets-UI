@@ -1,6 +1,6 @@
 export class Adress {
 
-    public num: number;
+    public number: number;
     public street: string;
     public postalCode: number;
     public city: string;
@@ -11,7 +11,7 @@ export class Adress {
         postalCode: number;
         city: string;
     }) {
-        this.num = options.number;
+        this.number = options.number;
         this.street = options.street;
         this.postalCode = options.postalCode;
         this.city = options.city;
