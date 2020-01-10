@@ -36,9 +36,4 @@ export class CustomerDetailComponent implements OnInit {
     if (event) { event.preventDefault(); }
     this.router.navigate(['']);
   }
-
-  logout() {
-    this.autent.logout();
-    this.router.navigate(['/login']);
-}
 }

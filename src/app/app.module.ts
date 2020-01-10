@@ -26,6 +26,7 @@ import { RelativeFormComponent } from './components/relative-form/relative-form.
 import {TableModule} from 'primeng/table';
 import { BasketIconRelativeComponent } from './components/basket-icon-relative/basket-icon-relative.component';
 import { CustomerDetailComponent } from './components/customer-detail/customer-detail.component';
+import { ButtonGotoEticketlistComponent } from './components/button-goto-eticketlist/button-goto-eticketlist.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { CustomerDetailComponent } from './components/customer-detail/customer-d
     RelativeListComponent,
     RelativeFormComponent,
     BasketIconRelativeComponent,
-    CustomerDetailComponent
+    CustomerDetailComponent,
+    ButtonGotoEticketlistComponent
   ],
   imports: [
     BrowserModule,

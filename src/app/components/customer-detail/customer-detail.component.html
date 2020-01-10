@@ -1,15 +1,10 @@
-<p>customer-detail works!</p>
-<p>customer-detail works!</p>
-
 <div class="container">
   
     <p *ngIf="isLoading; else showCustomer">Chargement en cours...</p>
 
     <ng-template #showCustomer>
-        <p class="col text-center">
-            <button class="btn btn-secondary" (click)="gotoEticketList($event)" style="margin-right: 150px;">Retour à la liste</button>
-            <button class="btn btn-warning" (click)="logout()">Se déconnecter</button>
-        </p>
+        <app-button-goto-eticketlist></app-button-goto-eticketlist>
+        
         <h4 class="col text-center">Vous êtes identifié avec votre adresse email : {{ customer.email }}.</h4>
 
 

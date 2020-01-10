@@ -3,17 +3,18 @@
     <img src="assets\brand_logo.png" width="64" alt="brand logo">
   </a>
   
-  <div class="ml-auto">
-    <app-basket-icon></app-basket-icon>
-  </div>
+  <div class="navbar ml-auto" *ngIf="currentUser">
+    <div>
+      <app-basket-icon></app-basket-icon>
+    </div>
 
-  <div>
-    <app-user-icon></app-user-icon>
-  </div>
+    <div>
+      <app-user-icon></app-user-icon>
+    </div>
 
-  <div class="navbar-nav" *ngIf="currentUser">
-   <!-- <a class="nav-item nav-link" routerLink="/">Home</a> -->
-    <a class="nav-item nav-link" (click)="logout()">Logout</a>
+    <div >
+      <button class="btn btn-warning" (click)="logout()">Se déconnecter</button>
+    </div>
   </div>
 
 </nav>

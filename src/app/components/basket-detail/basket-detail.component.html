@@ -38,11 +38,13 @@
           <button type="button" class="btn btn-secondary btn-lg btn-block" routerLink="/">
             Annuler
           </button>
+    </div>
+</div>
 
 <ng-template #basketEmpty>
-    <div class="alert alert-info" style="font-size:4em;">
+    <div class="alert alert-info" style="font-size:3em;">
         Votre panier est vide.<br>
     <i class="fas fa-cart-plus"></i> Veuillez ajouter des produits.
+    <app-button-goto-eticketlist></app-button-goto-eticketlist>
     </div>
 </ng-template>
-
