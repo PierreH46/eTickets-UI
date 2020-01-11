@@ -3,19 +3,8 @@
     <img src="assets\brand_logo.png" width="64" alt="brand logo">
   </a>
 
-  <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Gestion des contacts
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" href="/listeRelative">Liste des relatives</a>
-      <a class="dropdown-item" href="/nouveauRelative">Creer une relative</a>
-      <a class="dropdown-item" href="#">Something else here</a>
-    </div>
-  </div>
-
-  <div class="ml-auto">
-    
+    <div class="navbar ml-auto" *ngIf="currentUser">
+  <div>
     <app-basket-icon></app-basket-icon>
   </div>
 
@@ -23,9 +12,10 @@
     <app-user-icon></app-user-icon>
   </div>
 
-  <div class="navbar-nav" *ngIf="currentUser">
-    <a class="nav-item nav-link" routerLink="/">Home</a>
-    <a class="nav-item nav-link" (click)="logout()">Logout</a>
+
+    <div >
+      <button class="btn btn-warning" (click)="logout()">Se déconnecter</button>
+    </div>
   </div>
 
 </nav>

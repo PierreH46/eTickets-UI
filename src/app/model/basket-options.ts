@@ -8,4 +8,5 @@ export interface BasketOptions {
     price: number;
     typePrice: string;
     purchaseDate: Date;
+    relativeName: string;
 }

@@ -11,11 +11,10 @@ import { TypePrice } from '@app/model/rate';
 @Injectable({
   providedIn: 'root'
 })
-export class BasketService {
+export class Basket2Service {
 
-// tableau initialisé à vide
   eticketInfo: Array<{ eticket: Eticket, rateTypePrice: TypePrice,
-                    choicePrice: number, quantity: number, relativeName: string }> = [];
+    choicePrice: number, quantity: number , relativeName: string }> = []; // tableau initialisé à vide
   totalAmount: number;
   totalEtickets: number;
   isValid: boolean;
@@ -36,7 +35,7 @@ export class BasketService {
       // const pInfo = this.eticketInfo[index]; // produit + quantité
       this.eticketInfo[index].quantity += qty;
     } else { // pas trouvé
-      this.eticketInfo.push( {eticket, rateTypePrice, choicePrice, quantity: qty, relativeName: eticket.id });
+      this.eticketInfo.push( {eticket, rateTypePrice, choicePrice, quantity: qty, relativeName: this.relateName});
     }
 
     // incremente le nombre total d'articles et recalcule le montant total

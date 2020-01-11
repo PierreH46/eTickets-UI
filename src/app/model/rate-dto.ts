@@ -10,8 +10,7 @@ export enum TypePrice {
     RELATIVE_UNIQUE_PRICE = "RELATIVE_UNIQUE_PRICE"
 }
 
-export class Rate {
-
+export class RateDTO {
     // public priceType: PriceType;
     public typePrice: TypePrice;
     public price: number;

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { BasketService } from '../../services/basket.service';
 
 @Component({
@@ -7,6 +7,8 @@ import { BasketService } from '../../services/basket.service';
   styleUrls: ['./basket-icon.component.scss']
 })
 export class BasketIconComponent implements OnInit {
+
+  @Input() size: 'small' | 'medium' | 'large';
 
   constructor(private basketService: BasketService) { }
 

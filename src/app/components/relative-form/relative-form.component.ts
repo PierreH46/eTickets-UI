@@ -13,10 +13,12 @@ import { AuthenticationService } from '@app/services/authentication.service';
 })
 export class RelativeFormComponent implements OnInit {
 
+  emailMap: string;
+
   relativeForm = new FormGroup({
     id : new FormControl(''),
-    firstname : new FormControl(''),
     lastname : new FormControl(''),
+    firstname : new FormControl(''),
     email : new FormControl(''),
     phoneNumber : new FormControl('')
   });
@@ -25,8 +27,8 @@ export class RelativeFormComponent implements OnInit {
   customer: Customer;
 
   get id() { return this.relativeForm.get('id'); }
-  get firstname() { return this.relativeForm.get('firstname'); }
-  get lastname() { return this.relativeForm.get('lastname'); }
+  get firstname() { return this.relativeForm.get('lastname'); }
+  get lastname() { return this.relativeForm.get('firstname'); }
   get email() { return this.relativeForm.get('email'); }
   get phoneNumber() { return this.relativeForm.get('phoneNumber'); }
 
@@ -37,36 +39,36 @@ export class RelativeFormComponent implements OnInit {
               }
 
   ngOnInit() {
-    // inforamtion pour le get
-//    const id = this.route.snapshot.paramMap.get('id');
-//    console.log(id);
+    // Recherche information sur la relative par l'email envoyé pour la modification
 
-//    if (id && id !== undefined && id !== '') {
+    this.emailMap = this.route.snapshot.paramMap.get('email');
 
-//    this.relativeService.getRelativeDBJson(id).subscribe( (relative) => {
-//    this.relative = relative;
+    if(this.emailMap && this.emailMap !== undefined && this.emailMap !== '') {
 
-//    this.relativeForm.controls['id'].setValue(this.relative.id);
-//    this.relativeForm.controls['firstname'].setValue(this.relative.firstname);
-//    this.relativeForm.controls['lastname'].setValue(this.relative.lastname);
-//    this.relativeForm.controls['email'].setValue(this.relative.email);
-//    this.relativeForm.controls['phoneNumber'].setValue(this.relative.phoneNumber);
-//  } );
-// }
+  this.relativeService.getRelativeByMail(this.customer.id, this.emailMap).subscribe( (relative) => {
+  this.relative = relative;
+
+  this.relativeForm.controls['id'].setValue(this.relative.id);
+  this.relativeForm.controls['lastname'].setValue(this.relative.lastname);
+  this.relativeForm.controls['firstname'].setValue(this.relative.firstname);
+  this.relativeForm.controls['email'].setValue(this.relative.email);
+  this.relativeForm.controls['phoneNumber'].setValue(this.relative.phoneNumber);
+} );
+}
 }
   onSubmit() {
-   // console.warn(this.relativeForm.value);
+    console.warn(this.relativeForm.value);
     console.log(this.relativeForm.value.id);
-    console.log(this.relativeForm.value.firstname);
     console.log(this.relativeForm.value.lastname);
+    console.log(this.relativeForm.value.firstname);
     console.log(this.relativeForm.value.email);
     console.log(this.relativeForm.value.phoneNumber);
 
     const relativeDTO =
     new Relative (
       this.relativeForm.value.id,
-      this.relativeForm.value.firstname,
       this.relativeForm.value.lastname,
+      this.relativeForm.value.firstname,
       this.relativeForm.value.email,
       this.relativeForm.value.phoneNumber
       );
@@ -76,8 +78,7 @@ export class RelativeFormComponent implements OnInit {
     if (relativeDTO.id === undefined || relativeDTO.id === '' || relativeDTO.id === null) {
       this.relativeService.addRelative( relativeDTO, this.customer.id ).subscribe(
         () => {
-        console.log('Suceees creation');
-        this.router.navigate(['/listeRelative']);
+         this.router.navigate(['/client']);
         },
         (error) => {
           console.log('une erreur est arrive : ' + error.error[0] + this.gestionError(error.error[0]));
@@ -89,14 +90,13 @@ export class RelativeFormComponent implements OnInit {
     this.relativeService.updateRelative(relativeDTO, this.customer.id).subscribe(
       () => {
         console.log('Suceees update');
-        this.router.navigate(['/listeRelative']);
+        this.router.navigate(['/client']);
       },
       (error) => {
         console.log('une erreur est arrive : ' + error.error[0] + this.gestionError(error.error[0]));
       },
     );
     }
-
   }
   gestionError(erreur: string) {
     if (erreur === 'ERR_0004') { // pas de prénom
@@ -109,6 +109,4 @@ export class RelativeFormComponent implements OnInit {
   testButton() {
     console.log('ca marche');
   }
-
-
 }

@@ -1,0 +1,38 @@
+.error{
+    color: #FF0000;
+  }
+  .login-container {
+    background-color: rgb(51, 177, 51);
+  }
+
+  body.part .bottom-header .logoBNP, body.part .bottom-header .logoBNP-alone, body.part .bottom-header-connected .logoBNP, body.part .bottom-header-connected .logoBNP-alone {
+      background-image: url(../../assets/logo-bnpp.png);
+      background-position: 10px center;
+      height: 72px;
+  }
+
+  table{
+    table-layout: fixed;
+    width: 100% ;
+    border: none;
+  }
+  td {
+    width: 50% ;
+  }
+
+  .icon {
+    font-family: iconbnp;
+    speak: none;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    background-image: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    width: 0;
+    height: 0;
+    display: inline;
+    font-family: iconbnp;
+  }

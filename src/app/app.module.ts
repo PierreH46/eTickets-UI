@@ -14,9 +14,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EticketsListComponent } from './components/etickets-list/etickets-list.component';
 import { EticketItemComponent } from './components/eticket-item/eticket-item.component';
-import { BasketIconComponent } from './components/basket-icon/basket-icon.component';
-import { UserIconComponent } from './components/user-icon/user-icon.component';
-import { RadiobtnsComponent } from './radiobtns/radiobtns.component';
+import { BasketIconComponent } from './buttons/basket-icon/basket-icon.component';
+import { UserIconComponent } from './buttons/user-icon/user-icon.component';
+import { RadiobtnsComponent } from './buttons/radiobtns/radiobtns.component';
 import { BasicAuthInterceptor } from './helpers/basic-auth.interceptor';
 import { ErrorInterceptor } from './helpers/error.interceptor';
 import { LoginComponent } from './login/login.component';
@@ -24,7 +24,11 @@ import { BasketDetailComponent } from './components/basket-detail/basket-detail.
 import { RelativeListComponent } from './components/relative-list/relative-list.component';
 import { RelativeFormComponent } from './components/relative-form/relative-form.component';
 import {TableModule} from 'primeng/table';
-import { BasketIconRelativeComponent } from './components/basket-icon-relative/basket-icon-relative.component';
+import { BasketIconRelativeComponent } from './buttons/basket-icon-relative/basket-icon-relative.component';
+import { Eticket2ItemComponent } from './components/eticket2-item/eticket2-item.component';
+import { CustomerDetailComponent } from './components/customer-detail/customer-detail.component';
+import { ButtonGotoEticketlistComponent } from './buttons/button-goto-eticketlist/button-goto-eticketlist.component';
+import { Login2Component } from './login2/login2.component';
 
 
 @NgModule({
@@ -39,7 +43,11 @@ import { BasketIconRelativeComponent } from './components/basket-icon-relative/b
     BasketDetailComponent,
     RelativeListComponent,
     RelativeFormComponent,
-    BasketIconRelativeComponent
+    BasketIconRelativeComponent,
+    Eticket2ItemComponent,
+    CustomerDetailComponent,
+    ButtonGotoEticketlistComponent,
+    Login2Component
   ],
   imports: [
     BrowserModule,

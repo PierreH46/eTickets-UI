@@ -17,23 +17,16 @@ return this.http.get<Relative[]>('http://localhost:8080/customers/' + customerId
 }
 
 // Observable
-// getRelative(customerId, relativeId): Observable<Relative> {
-//   return this.http.get<Relative>('http://localhost:8080/customers/' + customerId + '/relatives');
-// }
+ getRelative(customerId, relativeId): Observable<Relative> {
+   return this.http.get<Relative>('http://localhost:8080/customers/' + customerId +
+   '/relatives' + relativeId);
+ }
 
-// getAllRelativesDBJson(): Observable<Relative[]> {
-//  return this.http.get<Relative[]>(`${this.url}/relatives`)
-//    .pipe(
-//      map((jsonRelative: any) => jsonRelative.map(jsonRelative => new Relative(jsonRelative)))
-//    );
-// }
-
-// getRelativeDBJson(id): Observable<Relative> {
-//  return this.http.get<Relative>(`${this.url}/relative`)
-//    .pipe(
-//      map((jsonRelative: any) => jsonRelative.map(jsonRelative => new Relative(jsonRelative)))
-//    );//
-//}
+ // Observable
+ getRelativeByMail(customerId, email): Observable<Relative> {
+  return this.http.get<Relative>('http://localhost:8080/customers/' + customerId +
+  '/relativesMail/' + email);
+}
 
 // POST : add a new relative to the server */
 addRelative(relative: Relative, customerId): Observable<string> {
@@ -46,4 +39,8 @@ updateRelative(relative: Relative, customerId): Observable<any> {
 return this.http.put<Relative>('http://localhost:8080/customers/' + customerId +
 '/relatives/' + relative.id, relative);
 }
+deleteRelativeByMail( customerId, email): Observable<any> {
+  return this.http.delete<any>('http://localhost:8080/customers/' + customerId +
+  '/relativesMail/' + email);
+  }
 }

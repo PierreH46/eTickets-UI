@@ -1,34 +1,39 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Eticket } from '../../model/eticket';
-import { BasketService } from '../../services/basket.service';
+import { TypePrice, Rate } from '@app/model/rate';
+import { Eticket } from '@app/model/eticket';
+import { Eticket2 } from '@app/model/eticket2';
 import { Customer, Profil } from '@app/model/customer';
-import { Rate, TypePrice } from '@app/model/rate';
+import { BasketService } from '@app/services/basket.service';
 import { AuthenticationService } from '@app/services/authentication.service';
 import { CustomerService } from '@app/services/customer.service';
-import { NumberValueAccessor } from '@angular/forms';
-import { Eticket2 } from '@app/model/eticket2';
-
 
 interface AddToBasketButton {
   price: number;
   typePrice: TypePrice;
   numEtickets: number;
 }
+interface AddBasketButton2 {
+  price: number;
+  typePrice: TypePrice;
+  quantity: number;
+}
+
 @Component({
-  selector: 'app-eticket-item',
-  templateUrl: './eticket-item.component.html',
+  selector: 'app-eticket2-item',
+  templateUrl: './eticket2-item.component.html',
   styles: []
 })
-export class EticketItemComponent implements OnInit {
+export class Eticket2ItemComponent implements OnInit {
 
   @Input() eticket: Eticket;
+  @Input() relativeMail: string;
+  //@Input() eticket2: Eticket2;
   customer: Customer;
-  numTik: number;
 
   //rateTypePrice: TypePrice;
 
   // Propriété contenant la liste de tous les boutons à afficher
-  addToBasketButtons: AddToBasketButton[] = [];
+  AddBasketButton2: AddBasketButton2[] = [];
 
   constructor(private basketService: BasketService,
               private autent: AuthenticationService,
@@ -36,48 +41,42 @@ export class EticketItemComponent implements OnInit {
 
   ngOnInit() {
     // ToDO - initialiser numEtickets avec le panier !!
-
+    console.log('item-email', this.relativeMail);
     this.customer = this.autent.currentUserValue;
-    this.addToBasketButtons = this.eticket.rates
+    this.AddBasketButton2 = this.eticket.rates
       // Garde uniquement les rates correspondant au profil customer (internal ou external)
-      .filter(rate => this.customer.profil === Profil.EXTERNAL ? isExternal(rate) : isInternal(rate))
+      .filter(rate =>
+        (this.relativeMail !== undefined || this.relativeMail !== '' || this.relativeMail !== null)
+        ? isRelative(rate) :
+        (this.customer.profil === Profil.EXTERNAL ? isExternal(rate) : isInternal(rate)))
       // Transforme chaque "rate" en infos pour afficher le bouton correspondant
       .map(rate => ({
         price: rate.price,
         typePrice: rate.typePrice,
-        numEtickets: 0
+        quantity: 0,
       }));
   }
 
-  add(rateTypePrice: TypePrice, choicePrice: number,  event: Event) {
-    event.stopPropagation(); // bloqué la propagation du au fait d'avoir mis
-    //      [routerLink]="['/eticket', eticket.slug]" sur la <div> mère
-    //      au lieu de <img> - pas propre => solution navigate ou
-    //      choisir que seule la photo permettra de passer à DetailEticket
-
+  add2(rateTypePrice: TypePrice, choicePrice: number,  event: Event) {
+    event.stopPropagation();
     //  Incrémente le compteur affiché dans l'UI
-    const index = this.addToBasketButtons.findIndex(button => button.typePrice === rateTypePrice);
-    this.addToBasketButtons[index].numEtickets++;
+    const index = this.AddBasketButton2.findIndex(button => button.typePrice === rateTypePrice);
+    this.AddBasketButton2[index].quantity++;
 
     // Ajoute le ticket au panier
     this.basketService.addEticketMix(this.eticket, rateTypePrice, choicePrice);
-    this.numTik = this.basketService.getNumForEticket(this.eticket.id, rateTypePrice);
-    console.log('numTik', this.numTik);
   }
 
-  remove(rateTypePrice: TypePrice, choicePrice: number, event: Event) {
+  remove2(rateTypePrice: TypePrice, choicePrice: number, event: Event) {
     event.stopPropagation();
 
     // Décrémente le compteur affiché dans l'UI
-    const index = this.addToBasketButtons.findIndex(button => button.typePrice === rateTypePrice);
-    this.addToBasketButtons[index].numEtickets--;
+    const index = this.AddBasketButton2.findIndex(button => button.typePrice === rateTypePrice);
+    this.AddBasketButton2[index].quantity--;
 
     // Ajoute le ticket au panier
     this.basketService.removeEticketMix(this.eticket, rateTypePrice, choicePrice);
-    this.numTik = this.basketService.getNumForEticket(this.eticket.id, rateTypePrice);
-    console.log('numTik', this.numTik);
   }
-
 }
 
 function isExternal(rate: Rate): boolean {
@@ -90,4 +89,10 @@ function isInternal(rate: Rate): boolean {
   return (rate.typePrice === TypePrice.INTERNAL_ADULT_PRICE) ||
          (rate.typePrice === TypePrice.INTERNAL_CHILD_PRICE) ||
          (rate.typePrice === TypePrice.INTERNAL_UNIQUE_PRICE);
+}
+
+function isRelative(rate: Rate): boolean {
+  return (rate.typePrice === TypePrice.RELATIVE_ADULT_PRICE) ||
+         (rate.typePrice === TypePrice.RELATIVE_CHILD_PRICE) ||
+         (rate.typePrice === TypePrice.RELATIVE_UNIQUE_PRICE);
 }

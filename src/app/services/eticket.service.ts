@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { Eticket } from '../model/eticket';
 import { TypePrice } from '@app/model/basket';
 import { Rate } from '@app/model/rate';
+import { Eticket2 } from '@app/model/eticket2';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,16 @@ export class EticketService {
           )
       );
   }
+
+  getAllEtickets2(): Observable<Eticket2[]> {
+    return this.http.get<Eticket2[]>(`${this.url}/etickets2`)
+      .pipe(
+        map(
+          (jsonEticket: any) => jsonEticket.map(jsonE => new Eticket(jsonE))
+          )
+      );
+  }
+
   getETicket(eticketId): Observable<Eticket> {
     return this.http.get<Eticket>(`${this.url}/etickets2/'${eticketId}`)
     .pipe(
