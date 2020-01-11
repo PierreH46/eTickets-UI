@@ -47,7 +47,7 @@ import { Login2Component } from './login2/login2.component';
     Eticket2ItemComponent,
     CustomerDetailComponent,
     ButtonGotoEticketlistComponent,
-    Login2Component
+    LoginComponent
   ],
   imports: [
     BrowserModule,
