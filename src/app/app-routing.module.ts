@@ -7,6 +7,7 @@ import { BasketDetailComponent } from './components/basket-detail/basket-detail.
 import { RelativeListComponent } from './components/relative-list/relative-list.component';
 import { RelativeFormComponent } from './components/relative-form/relative-form.component';
 import { CustomerDetailComponent } from './components/customer-detail/customer-detail.component';
+import { ValidatedBasketComponent } from './components/validated-basket/validated-basket.component';
 
 
 
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'nouveauRelative', component: RelativeFormComponent },
   { path: 'panier', component: BasketDetailComponent },
   { path: 'client', component: CustomerDetailComponent },
+  { path: 'panier-valide', component: ValidatedBasketComponent },
         // otherwise redirect to home
   { path: '**', redirectTo: '' }
 //  {path: '', redirectTo: 'etickets', pathMatch: 'full' },

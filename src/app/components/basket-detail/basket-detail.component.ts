@@ -4,6 +4,7 @@ import { BasketService } from '@app/services/basket.service';
 import { Basket } from '@app/model/basket';
 import { AuthenticationService } from '@app/services/authentication.service';
 import { Customer } from '@app/model/customer';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-basket-detail',
@@ -21,7 +22,9 @@ export class BasketDetailComponent implements OnInit {
   customer: Customer;
   date = new Date();
 
-  constructor(private basketService: BasketService, private autent: AuthenticationService) { }
+  constructor(private basketService: BasketService,
+              private autent: AuthenticationService,
+              private router: Router) { }
 
   ngOnInit() {
     this.eticketInfo = this.basketService.eticketInfo;
@@ -53,19 +56,9 @@ export class BasketDetailComponent implements OnInit {
     console.log('min', this.eticketInfo.length);
   }
 
-  validBasket() {
+  validBasket(event: Event) {
     console.log(this.eticketInfo);
     this.eticketInfo.forEach (c => {
- //     this.basket = new Basket (null, c.quantity, false, c.eticket.category, c.eticket.name, c.choicePrice, c.rateTypePrice, this.date );
- //     this.basket = new Basket();
- //     this.basket.id = null;
- //     this.basket.quantity = c.quantity;
- //     this.basket.status = false;
- //     this.basket.category = c.eticket.category;
- //     this.basket.reference = c.eticket.name;
- //     this.basket.price = c.choicePrice;
-//      this.basket.typePrice = c.rateTypePrice;
- //     this.basket.purchaseDate = this.date;
       this.basket = new Basket (null, c.quantity, false, c.eticket.category, c.eticket.name,
         c.choicePrice, /*c.rateTypePrice*/ null, this.date );
       console.log('basket', this.basket);
@@ -76,9 +69,13 @@ export class BasketDetailComponent implements OnInit {
             (error) => {
               console.log('une erreur est arrive : ' + error.error[0] + this.gestionError(error.error[0]));
             },
-          );
-  });
-}
+      );
+    });
+    // reinitialisation du basket
+    this.basketService.initBasket();
+    this.router.navigate(['/panier-valide']);
+  }
+
 gestionError(erreur: string) {
   if (erreur === 'ERR_0004') { // pas de prénom
     return ' il faut un prénom';

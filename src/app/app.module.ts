@@ -24,9 +24,9 @@ import { BasketDetailComponent } from './components/basket-detail/basket-detail.
 import { RelativeListComponent } from './components/relative-list/relative-list.component';
 import { RelativeFormComponent } from './components/relative-form/relative-form.component';
 import {TableModule} from 'primeng/table';
-import { BasketIconRelativeComponent } from './components/basket-icon-relative/basket-icon-relative.component';
 import { CustomerDetailComponent } from './components/customer-detail/customer-detail.component';
 import { ButtonGotoEticketlistComponent } from './components/button-goto-eticketlist/button-goto-eticketlist.component';
+import { ValidatedBasketComponent } from './components/validated-basket/validated-basket.component';
 
 
 @NgModule({
@@ -41,9 +41,9 @@ import { ButtonGotoEticketlistComponent } from './components/button-goto-eticket
     BasketDetailComponent,
     RelativeListComponent,
     RelativeFormComponent,
-    BasketIconRelativeComponent,
     CustomerDetailComponent,
-    ButtonGotoEticketlistComponent
+    ButtonGotoEticketlistComponent,
+    ValidatedBasketComponent
   ],
   imports: [
     BrowserModule,

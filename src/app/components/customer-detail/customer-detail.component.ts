@@ -32,8 +32,8 @@ export class CustomerDetailComponent implements OnInit {
     this.router.navigate(['/nouveauRelative']);
   }
 
-  gotoEticketList(event?: Event) {
+  /*gotoEticketList(event?: Event) {
     if (event) { event.preventDefault(); }
     this.router.navigate(['']);
-  }
+  }*/
 }
