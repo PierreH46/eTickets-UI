@@ -1,12 +1,12 @@
 
 
-<h4 class="col text-center">Vous constitué le panier de : {{ emailMap }}.</h4>
+<h4 class="col text-center" *ngIf="emailMap">Vous constitué le panier de : {{ emailMap }}.</h4>
 
 <h2>Cinema</h2>
 
 <div class= "row">
     <div class= "col-sm-4" *ngFor="let currentEticket of cinemaEtickets">
-        <app-eticket2-item [eticket]="currentEticket" [relativeMail]="emailMap"></app-eticket2-item>
+        <app-eticket2-item [eticket]="currentEticket" [emailRelative]="emailMap"></app-eticket2-item>
     </div>
 </div>
 
@@ -14,7 +14,7 @@
 
 <div class= "row">
     <div class= "col-sm-4" *ngFor="let currentEticket of loisirsEtickets">
-        <app-eticket2-item [eticket]="currentEticket" [relativeMail]="emailMap"></app-eticket2-item>
+        <app-eticket2-item [eticket]="currentEticket" [emailRelative]="emailMap"></app-eticket2-item>
     </div>
 </div>
 

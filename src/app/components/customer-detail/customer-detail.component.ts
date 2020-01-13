@@ -42,10 +42,7 @@ export class CustomerDetailComponent implements OnInit {
     event.stopPropagation();
     this.relativeService.deleteRelativeByMail(this.customer.id, email).subscribe(
       () => {
-      this.router.navigate(['/client']);
-      },
-      (error) => {
-        console.log('une erreur est arrive : ' + error.error[0] );
+      this.router.navigate(['/']);
       },
     );
   }

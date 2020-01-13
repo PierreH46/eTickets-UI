@@ -7,9 +7,9 @@ export enum TypePrice {
     EXTERNAL_ADULT_PRICE = 'EXTERNAL_ADULT_PRICE',
     INTERNAL_UNIQUE_PRICE = 'INTERNAL_UNIQUE_PRICE',
     EXTERNAL_UNIQUE_PRICE = 'EXTERNAL_UNIQUE_PRICE',
-    RELATIVE_ADULT_PRICE = "RELATIVE_ADULT_PRICE",
-    RELATIVE_CHILD_PRICE = "RELATIVE_CHILD_PRICE",
-    RELATIVE_UNIQUE_PRICE = "RELATIVE_UNIQUE_PRICE"
+    RELATIVE_ADULT_PRICE = 'RELATIVE_ADULT_PRICE',
+    RELATIVE_CHILD_PRICE = 'RELATIVE_CHILD_PRICE',
+    RELATIVE_UNIQUE_PRICE = 'RELATIVE_UNIQUE_PRICE'
 }
 
 export class Basket {
@@ -22,7 +22,7 @@ export class Basket {
         public price: number,
         public typePrice: TypePrice,
         public purchaseDate: Date,
-        public relativeName?: string
+        public emailRelative?: string
         ) {}
 
  //   public id: string;

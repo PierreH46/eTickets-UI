@@ -1,0 +1,58 @@
+<div class="row" *ngIf="eticketInfo.length > 0; else basketEmpty">
+    <div class="col-md-8 offset-md-2">
+
+        <h1 class="col text-center">Votre Commande</h1>
+
+        <table class="table">
+
+            <tr>
+                <th></th>
+                <th>NOM</th>
+                  <th>TYPE</th>
+                  <th>QUANTITE</th>
+                  <th>PRIX</th>
+                  <th scope="col"><h3>TOTAL</h3></th>
+                </tr>
+
+            <tbody>
+              <tr *ngFor="let pInfo of eticketInfo; let i = index;">
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ pInfo.eticket.name }}  </td>
+                <td>{{ pInfo.rateTypePrice }}  </td>
+                <td>{{ pInfo.quantity }}  </td>
+            <td>{{ (pInfo.choicePrice * pInfo.quantity) | currency:'€' }}</td>
+              </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th scope="col"><h3>{{ getTotalAmount() | currency:'€' }}</h3></th>
+                </tr>
+              </tfoot>
+        </table>
+
+        <div *ngIf="!this.emailRelative"><h4  > Merci pour votre commande, vous recevrez très prochainement sur votre boite email {{ customer.email }} et/ou
+            sur votre téléphone {{ customer.phoneNumber }} les Ebillets.
+            Bonne journée  </h4>
+        </div>
+        <div *ngIf="this.emailRelative"><h4  > Merci pour votre commande, votre proche {{ relative.lastname }} {{ relative.firstname }}
+            recevra très prochainement à son adresse email {{relative.email}} et/ou
+            sur son téléphone {{ relative.phoneNumber }} les Ebillets.
+            Bonne journée  </h4>
+        </div>
+          <button type="button" class="btn btn-secondary btn-lg btn-block" (click) = "discardBasket()" routerLink="/">
+            Retour à la liste
+          </button>
+    </div>
+  </div>
+
+<ng-template #basketEmpty>
+    <div class="alert alert-info" style="font-size:4em;">
+        Votre panier est vide.<br>
+    <i class="fas fa-cart-plus"></i> Veuillez ajouter des produits.
+    </div>
+</ng-template>

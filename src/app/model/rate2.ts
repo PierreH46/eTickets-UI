@@ -16,6 +16,7 @@ export class Rate2 {
 
 
     constructor(
+        public name: string,
         public typePrice: TypePrice,
         public price: number,
         public quantity: number,

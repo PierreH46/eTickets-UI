@@ -15,11 +15,10 @@ export class BasketService {
 
 // tableau initialisé à vide
   eticketInfo: Array<{ eticket: Eticket, rateTypePrice: TypePrice,
-                    choicePrice: number, quantity: number, relativeName: string }> = [];
+                    choicePrice: number, emailRelative: string, quantity: number }> = [];
   totalAmount: number;
   totalEtickets: number;
   isValid: boolean;
-  relateName: string;
 
   constructor(private eticketService: EticketService, private http: HttpClient,
               private autent: AuthenticationService) {
@@ -27,7 +26,8 @@ export class BasketService {
     this.isValid = false;
    }
 
-  addEticketMix(eticket: Eticket, rateTypePrice: TypePrice, choicePrice: number, qty: number = 1) {
+  addEticketMix(eticket: Eticket, rateTypePrice: TypePrice, choicePrice: number,
+                emailRelative: string, qty: number = 1) {
     // le produit en cours est-il déjà dans le panier ? à quelle position pour pouvoir le mettre à jour
     const index = this.eticketInfo.findIndex(pInfo =>
       ((pInfo.eticket.id === eticket.id) && (pInfo.rateTypePrice === rateTypePrice)));
@@ -36,7 +36,7 @@ export class BasketService {
       // const pInfo = this.eticketInfo[index]; // produit + quantité
       this.eticketInfo[index].quantity += qty;
     } else { // pas trouvé
-      this.eticketInfo.push( {eticket, rateTypePrice, choicePrice, quantity: qty, relativeName: eticket.id });
+      this.eticketInfo.push( {eticket, rateTypePrice, choicePrice, emailRelative, quantity: qty });
     }
 
     // incremente le nombre total d'articles et recalcule le montant total
@@ -66,19 +66,6 @@ export class BasketService {
 
     this.saveBasket();
   }
-
-  // Renvoie le nb d'unités dans le panier pour un produit précis
-  getNumForEticket(eticketId: string,rateTypePrice: TypePrice): number {
-    console.log('typePrice', rateTypePrice);
-    console.log('pinfo', this.eticketInfo);
-    const index = this.eticketInfo.findIndex(pInf =>
-      ((pInf.eticket.id === eticketId) && (pInf.rateTypePrice === rateTypePrice)));
-    if (index !== -1) { // trouvé
-      console.log('quantity',this.eticketInfo[index].quantity );
-      return this.eticketInfo[index].quantity;
-      } else { return 0; }
-        }
-
 
   saveBasket() {
     // - Crée la version sérialisable avec Array.push()

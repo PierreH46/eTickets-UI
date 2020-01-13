@@ -11,10 +11,8 @@ export enum TypePrice {
 }
 
 export class RateDTO {
-    // public priceType: PriceType;
     public typePrice: TypePrice;
     public price: number;
-    // public stock: number;
     public quantity: number;
 
     constructor(options: {
@@ -41,6 +39,15 @@ export class RateDTO {
                 break;
             case 'EXTERNAL_UNIQUE_PRICE':
                 this.typePrice = TypePrice.EXTERNAL_UNIQUE_PRICE;
+                break;
+            case 'RELATIVE_ADULT_PRICE':
+                this.typePrice = TypePrice.RELATIVE_ADULT_PRICE;
+                break;
+            case 'RELATIVE_CHILD_PRICE':
+                this.typePrice = TypePrice.RELATIVE_CHILD_PRICE;
+                break;
+            case 'RELATIVE_UNIQUE_PRICE':
+                this.typePrice = TypePrice.RELATIVE_UNIQUE_PRICE;
                 break;
         }
         this.price = options.price;

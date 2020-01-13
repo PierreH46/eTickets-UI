@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TypePrice, Rate } from '@app/model/rate';
 import { Eticket } from '@app/model/eticket';
-import { Eticket2 } from '@app/model/eticket2';
 import { Customer, Profil } from '@app/model/customer';
 import { BasketService } from '@app/services/basket.service';
 import { AuthenticationService } from '@app/services/authentication.service';
@@ -26,11 +25,8 @@ interface AddBasketButton2 {
 export class Eticket2ItemComponent implements OnInit {
 
   @Input() eticket: Eticket;
-  @Input() relativeMail: string;
-  //@Input() eticket2: Eticket2;
+  @Input() emailRelative: string;
   customer: Customer;
-
-  //rateTypePrice: TypePrice;
 
   // Propriété contenant la liste de tous les boutons à afficher
   AddBasketButton2: AddBasketButton2[] = [];
@@ -41,15 +37,15 @@ export class Eticket2ItemComponent implements OnInit {
 
   ngOnInit() {
     // ToDO - initialiser numEtickets avec le panier !!
-    console.log('item-email', this.relativeMail);
     this.customer = this.autent.currentUserValue;
     this.AddBasketButton2 = this.eticket.rates
-      // Garde uniquement les rates correspondant au profil customer (internal ou external)
+      // Garde uniquement les rates correspondant au profil customer (internal ou external) ou à la relative
       .filter(rate =>
-        (this.relativeMail !== undefined || this.relativeMail !== '' || this.relativeMail !== null)
+        (this.emailRelative !== null)
         ? isRelative(rate) :
         (this.customer.profil === Profil.EXTERNAL ? isExternal(rate) : isInternal(rate)))
-      // Transforme chaque "rate" en infos pour afficher le bouton correspondant
+
+             // Transforme chaque "rate" en infos pour afficher le bouton correspondant
       .map(rate => ({
         price: rate.price,
         typePrice: rate.typePrice,
@@ -64,7 +60,7 @@ export class Eticket2ItemComponent implements OnInit {
     this.AddBasketButton2[index].quantity++;
 
     // Ajoute le ticket au panier
-    this.basketService.addEticketMix(this.eticket, rateTypePrice, choicePrice);
+    this.basketService.addEticketMix(this.eticket, rateTypePrice, choicePrice, this.emailRelative);
   }
 
   remove2(rateTypePrice: TypePrice, choicePrice: number, event: Event) {
@@ -78,7 +74,7 @@ export class Eticket2ItemComponent implements OnInit {
     this.basketService.removeEticketMix(this.eticket, rateTypePrice, choicePrice);
   }
 }
-
+// Fonction aiguillage pour le choix du TypePrice (externe, interne ou relative)
 function isExternal(rate: Rate): boolean {
   return (rate.typePrice === TypePrice.EXTERNAL_ADULT_PRICE) ||
          (rate.typePrice === TypePrice.EXTERNAL_CHILD_PRICE) ||

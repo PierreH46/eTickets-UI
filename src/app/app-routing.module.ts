@@ -7,6 +7,7 @@ import { BasketDetailComponent } from './components/basket-detail/basket-detail.
 import { RelativeListComponent } from './components/relative-list/relative-list.component';
 import { RelativeFormComponent } from './components/relative-form/relative-form.component';
 import { CustomerDetailComponent } from './components/customer-detail/customer-detail.component';
+import { DetailsCommandeComponent } from './components/details-commande/details-commande.component';
 
 
 
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'client', component: CustomerDetailComponent },
   {path: 'modifier/:email', component: RelativeFormComponent},
   {path: 'liste/:email', component: EticketsListComponent},
+  {path: 'commande', component: DetailsCommandeComponent},
         // otherwise redirect to home
   { path: '**', redirectTo: '' }
 //  {path: '', redirectTo: 'etickets', pathMatch: 'full' },

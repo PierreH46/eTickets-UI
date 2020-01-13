@@ -8,10 +8,5 @@ export interface EticketOptions {
     isNominatif?: boolean;
     validityDate?: string;
     rates: any[];
-    /*
-    priceType: string;
-    price: number;
-    stock?: number;
-    */
     provider: string;
 }

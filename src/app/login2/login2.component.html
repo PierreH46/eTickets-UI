@@ -27,29 +27,36 @@
       </td>
     </tr>
         <tr>
-          <td >
-          <div class="login-container">
+          <td width="50%">
 
-        <h2 style="margin: auto">Login </h2>
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-          <div class="form-group">
-            <label for="username">UserName:</label>
-            <input type="text" class="form-control" formControlName="username" id="username" autocomplete="off">
-            <div class="error" *ngIf="loginForm.controls['username'].hasError('required') && loginForm.controls['username'].touched">Username is required</div>
-          </div>
-          <div class="form-group">
-            <label for="pwd">Password:</label>
-            <input type="password" class="form-control" formControlName="password" id="pwd" autocomplete="off">
-            <div class="error" *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched">Password is required</div>
-          </div>
-          <button class="btn btn-success" [disabled]="loginForm.invalid">Login</button>
-          <div *ngIf="invalidLogin" class="error">
-            <div>Invalid credentials.</div>
-          </div>
-        </form>
-      </div>
+        <div class="card">
+            <h4 class="card-header">Login :</h4>
+            <div class="card-body">
+                <form [formGroup]="loginForm"> <!--(ngSubmit)="onSubmit()">-->
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                            <div *ngIf="f.username.errors.required">Username is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                            <div *ngIf="f.password.errors.required">Password is required</div>
+                        </div>
+                    </div>
+                    <button [disabled]="loading" class="btn btn-primary" (click)="submit()">
+                        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                        Login
+                    </button>
+                    <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+                </form>
+            </div>
+        </div>
     </td>
-          <td class="col-md-">
+          <td class="col-md-6">
           <section style="top: 0px; position: relative; background-color: white">
             <i class="fa fa-info-circle" aria-hidden="true" style="color: rgb(134, 28, 28); font-size: 1.3em; float: left; margin: 0.8em;"></i>
             <p class="pull-left" style="line-height: 1.2em; font-size: 1em; margin-top: 23px;width: calc(100% - 85px);">
@@ -60,4 +67,3 @@
         </td>
     </tr>
       </table>
-    <!--</div>-->

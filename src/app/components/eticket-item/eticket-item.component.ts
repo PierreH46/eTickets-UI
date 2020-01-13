@@ -5,8 +5,6 @@ import { Customer, Profil } from '@app/model/customer';
 import { Rate, TypePrice } from '@app/model/rate';
 import { AuthenticationService } from '@app/services/authentication.service';
 import { CustomerService } from '@app/services/customer.service';
-import { NumberValueAccessor } from '@angular/forms';
-import { Eticket2 } from '@app/model/eticket2';
 
 
 interface AddToBasketButton {
@@ -23,9 +21,6 @@ export class EticketItemComponent implements OnInit {
 
   @Input() eticket: Eticket;
   customer: Customer;
-  numTik: number;
-
-  //rateTypePrice: TypePrice;
 
   // Propriété contenant la liste de tous les boutons à afficher
   addToBasketButtons: AddToBasketButton[] = [];
@@ -50,20 +45,14 @@ export class EticketItemComponent implements OnInit {
   }
 
   add(rateTypePrice: TypePrice, choicePrice: number,  event: Event) {
-    event.stopPropagation(); // bloqué la propagation du au fait d'avoir mis
-    //      [routerLink]="['/eticket', eticket.slug]" sur la <div> mère
-    //      au lieu de <img> - pas propre => solution navigate ou
-    //      choisir que seule la photo permettra de passer à DetailEticket
 
     //  Incrémente le compteur affiché dans l'UI
     const index = this.addToBasketButtons.findIndex(button => button.typePrice === rateTypePrice);
     this.addToBasketButtons[index].numEtickets++;
 
     // Ajoute le ticket au panier
-    this.basketService.addEticketMix(this.eticket, rateTypePrice, choicePrice);
-    this.numTik = this.basketService.getNumForEticket(this.eticket.id, rateTypePrice);
-    console.log('numTik', this.numTik);
-  }
+ //   this.basketService.addEticketMix(this.eticket, rateTypePrice, choicePrice);
+     }
 
   remove(rateTypePrice: TypePrice, choicePrice: number, event: Event) {
     event.stopPropagation();
@@ -74,10 +63,7 @@ export class EticketItemComponent implements OnInit {
 
     // Ajoute le ticket au panier
     this.basketService.removeEticketMix(this.eticket, rateTypePrice, choicePrice);
-    this.numTik = this.basketService.getNumForEticket(this.eticket.id, rateTypePrice);
-    console.log('numTik', this.numTik);
-  }
-
+     }
 }
 
 function isExternal(rate: Rate): boolean {

@@ -8,8 +8,6 @@ import { BasketService } from '../../services/basket.service';
 })
 export class BasketIconComponent implements OnInit {
 
-  @Input() size: 'small' | 'medium' | 'large';
-
   constructor(private basketService: BasketService) { }
 
   ngOnInit() {

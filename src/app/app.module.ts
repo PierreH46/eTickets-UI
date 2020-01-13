@@ -29,6 +29,8 @@ import { Eticket2ItemComponent } from './components/eticket2-item/eticket2-item.
 import { CustomerDetailComponent } from './components/customer-detail/customer-detail.component';
 import { ButtonGotoEticketlistComponent } from './buttons/button-goto-eticketlist/button-goto-eticketlist.component';
 import { Login2Component } from './login2/login2.component';
+import { EticketDetailComponent } from './components/eticket-detail/eticket-detail.component';
+import { DetailsCommandeComponent } from './components/details-commande/details-commande.component';
 
 
 @NgModule({
@@ -47,7 +49,9 @@ import { Login2Component } from './login2/login2.component';
     Eticket2ItemComponent,
     CustomerDetailComponent,
     ButtonGotoEticketlistComponent,
-    Login2Component
+    Login2Component,
+    EticketDetailComponent,
+    DetailsCommandeComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +69,6 @@ import { Login2Component } from './login2/login2.component';
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     // provider used to create fake backend
     fakeBackendProvider
-
   ],
   bootstrap: [AppComponent]
 })

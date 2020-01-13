@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Eticket, Category } from '../../model/eticket';
 import { EticketService } from '../../services/eticket.service';
 import { BasketService } from '@app/services/basket.service';
-import { Eticket2 } from '@app/model/eticket2';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -32,7 +31,6 @@ export class EticketsListComponent implements OnInit {
  // Recherche information sur la relative par l'email envoyé pour la modification
 
  this.emailMap = this.route.snapshot.paramMap.get('email');
- console.log('email relative', this.emailMap);
 
  this.eticketService.getAllEtickets()
       .subscribe(listEtickets => {
@@ -43,4 +41,5 @@ export class EticketsListComponent implements OnInit {
         this.concertEtickets = this.etickets.filter(e => e.category === Category.CONCERT);
       });
   }
+
 }

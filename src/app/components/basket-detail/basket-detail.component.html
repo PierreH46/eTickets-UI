@@ -3,6 +3,7 @@
 
         <h1>Panier</h1>
 
+        <h4 class="col text-center" *ngIf="this.emailR">Vous constitué le panier pour : {{ this.emailR }}.</h4>
         <table class="table">
             <tbody>
               <tr *ngFor="let pInfo of eticketInfo; let i = index;">
@@ -11,11 +12,12 @@
                 <td>{{ pInfo.rateTypePrice }}  </td>
                 <td>
                     <p class= "buttons" style="font-size: 20px;">
-                        <i class="far fa-minus-square" (click)="remove(pInfo.eticket,pInfo.rateTypePrice, pInfo.choicePrice, $event)" *ngIf="pInfo.quantity > 0"></i>
-
+                        <i class="far fa-minus-square" (click)="remove(pInfo.eticket,pInfo.rateTypePrice,
+                                            pInfo.choicePrice, $event)" *ngIf="pInfo.quantity > 0"></i>
                         {{  pInfo.quantity }}
 
-                        <i class="far fa-plus-square" (click)="add(pInfo.eticket,pInfo.rateTypePrice, pInfo.choicePrice, $event)"></i>
+                        <i class="far fa-plus-square" (click)="add(pInfo.eticket,pInfo.rateTypePrice,
+                                pInfo.choicePrice, pInfo.emailRelative, $event)"></i>
                     </p>
                 </td>
             <td>{{ (pInfo.choicePrice * pInfo.quantity) | currency:'€' }}</td>
@@ -32,8 +34,15 @@
               </tfoot>
         </table>
 
-        <button type="button" class="btn btn-primary btn-lg btn-block" (click) = "validBasket(eticketInfo)">
-            Valider le panier
+        <button type="button" class="btn btn-primary btn-lg btn-block" (click) = "verifBasket(eticketInfo)" *ngIf="!verifB">
+          Vérifier votre panier
+        </button>
+        <div class= "row" *ngIf="verifBMess" > Votre panier n'est pas valide en raison d'un nombre insuffisant de ticket
+        {{nameKO}} pour le type {{rateTypePriceKO}} en stock. Nous vous recommandons de diminuer la quantité {{quantityKO}},
+        ou de repasser commande ultérieurement. Merci
+        </div>
+        <button type="button" class="btn btn-primary btn-lg btn-block" (click) = "validBasket2(eticketInfo)" *ngIf="verifB">
+            Valider votre panier
           </button>
           <button type="button" class="btn btn-secondary btn-lg btn-block" (click) = "discardBasket()" routerLink="/">
             Annuler

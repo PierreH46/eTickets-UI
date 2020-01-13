@@ -73,9 +73,10 @@ export class RelativeFormComponent implements OnInit {
       this.relativeForm.value.phoneNumber
       );
 
-    console.log(relativeDTO);
+    console.log('relativeDTO', relativeDTO);
 
-    if (relativeDTO.id === undefined || relativeDTO.id === '' || relativeDTO.id === null) {
+    if (this.emailMap === undefined || this.emailMap === '' || this.emailMap === null) {
+ //     if (relativeDTO.id === undefined || relativeDTO.id === '' || relativeDTO.id === null) {
       this.relativeService.addRelative( relativeDTO, this.customer.id ).subscribe(
         () => {
          this.router.navigate(['/client']);
@@ -87,7 +88,8 @@ export class RelativeFormComponent implements OnInit {
 
     } else {
       // tslint:disable-next-line: deprecation
-    this.relativeService.updateRelative(relativeDTO, this.customer.id).subscribe(
+ //   this.relativeService.updateRelative(relativeDTO, this.customer.id).subscribe(
+      this.relativeService.updateRelativeByMail(relativeDTO, this.customer.id,this.emailMap).subscribe(
       () => {
         console.log('Suceees update');
         this.router.navigate(['/client']);

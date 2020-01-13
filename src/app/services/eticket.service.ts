@@ -3,9 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Eticket } from '../model/eticket';
-import { TypePrice } from '@app/model/basket';
 import { Rate } from '@app/model/rate';
-import { Eticket2 } from '@app/model/eticket2';
 
 @Injectable({
   providedIn: 'root'
@@ -20,15 +18,6 @@ export class EticketService {
 
   getAllEtickets(): Observable<Eticket[]> {
     return this.http.get<Eticket[]>(`${this.url}/etickets2`)
-      .pipe(
-        map(
-          (jsonEticket: any) => jsonEticket.map(jsonE => new Eticket(jsonE))
-          )
-      );
-  }
-
-  getAllEtickets2(): Observable<Eticket2[]> {
-    return this.http.get<Eticket2[]>(`${this.url}/etickets2`)
       .pipe(
         map(
           (jsonEticket: any) => jsonEticket.map(jsonE => new Eticket(jsonE))
@@ -52,8 +41,8 @@ export class EticketService {
       )
     );
   }
- // POST : update a stock to the serv>er
- updateStockEticket(rate, eticketId,typePrice): Observable<any> {
-  return this.http.put<Rate>('http://localhost:8080//etickets/' + eticketId + '/rates/' + typePrice, rate, this.httpOptions);
+ // PUT : update du stock ticket
+ updateStockEticket(rate, eticketId, typePrice): Observable<any> {
+  return this.http.put<Rate>('http://localhost:8080/etickets/' + eticketId + '/rates/' + typePrice, rate, this.httpOptions);
   }
 }
