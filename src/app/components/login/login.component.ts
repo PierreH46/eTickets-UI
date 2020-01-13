@@ -52,11 +52,11 @@ export class LoginComponent implements OnInit {
         this.authenticationService.login(this.f.username.value, this.f.password.value)
          //   .pipe(first())
             .subscribe(
-                data => {this.usercust=data;
-                         console.log(this.usercust.email+' '+this.usercust.profil);
-                         if (this.f.password.value ===this.usercust.password){
+                data => {this.usercust = data;
+                         console.log(this.usercust.email + ' ' + this.usercust.profil);
+                         if (this.f.password.value === this.usercust.password) {
                     this.router.navigate([this.returnUrl]);
-                    } else {this.error='Invalid password';
+                    } else {this.error = 'Invalid password';
                             this.loading = false;
                             this.router.navigate(['login']);
                     }

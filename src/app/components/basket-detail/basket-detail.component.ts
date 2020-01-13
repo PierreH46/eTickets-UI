@@ -87,7 +87,7 @@ export class BasketDetailComponent implements OnInit {
                     (e.typePrice === c.rateTypePrice));
               this.newStock = this.listeRate[index].quantity - c.quantity;
               // vérification en fonction du seuil minimal
-              if (this.newStock < 197) {
+              if (this.newStock < 10) {
                 this.rateTypePriceKO = c.rateTypePrice;
                 this.nameKO = c.eticket.name;
                 this.quantityKO = c.quantity;
@@ -119,7 +119,6 @@ export class BasketDetailComponent implements OnInit {
                   const index = this.listeRate.findIndex(e =>
                     (e.typePrice === c.rateTypePrice));
                   this.newStock = this.listeRate[index].quantity - c.quantity;
-                  if (this.newStock > 0) {}
                   this.rate2 = new Rate2(c.eticket.name, c.rateTypePrice, c.choicePrice, this.newStock);
                   this.eticketService.updateStockEticket(this.rate2, c.eticket.id, c.rateTypePrice)
                     .subscribe(() => {console.log('Succes modification'); },
@@ -157,7 +156,6 @@ export class BasketDetailComponent implements OnInit {
                   const index = this.listeRate.findIndex(e =>
                     (e.typePrice === c.rateTypePrice));
                   this.newStock = this.listeRate[index].quantity - c.quantity;
-                  if (this.newStock > 0) {}
                   this.rate2 = new Rate2(c.eticket.name, c.rateTypePrice, c.choicePrice, this.newStock);
                   this.eticketService.updateStockEticket(this.rate2, c.eticket.id, c.rateTypePrice)
                     .subscribe(() => {console.log('Succes modification'); },

@@ -27,7 +27,6 @@ import { BasketIconRelativeComponent } from './buttons/basket-icon-relative/bask
 import { Eticket2ItemComponent } from './components/eticket2-item/eticket2-item.component';
 import { CustomerDetailComponent } from './components/customer-detail/customer-detail.component';
 import { ButtonGotoEticketlistComponent } from './buttons/button-goto-eticketlist/button-goto-eticketlist.component';
-import { Login2Component } from './components/login2/login2.component';
 import { EticketDetailComponent } from './components/eticket-detail/eticket-detail.component';
 import { DetailsCommandeComponent } from './components/details-commande/details-commande.component';
 
@@ -47,7 +46,6 @@ import { DetailsCommandeComponent } from './components/details-commande/details-
     Eticket2ItemComponent,
     CustomerDetailComponent,
     ButtonGotoEticketlistComponent,
-    Login2Component,
     EticketDetailComponent,
     DetailsCommandeComponent
   ],

@@ -34,12 +34,12 @@
               </tfoot>
         </table>
 
-        <button type="button" class="btn btn-primary btn-lg btn-block" (click) = "verifBasket(eticketInfo)" *ngIf="!verifB">
+        <button type="button" class="btn btn-warning btn-lg btn-block" (click) = "verifBasket(eticketInfo)" *ngIf="!verifB">
           Vérifier votre panier
         </button>
-        <div class= "row" *ngIf="verifBMess" > Votre panier n'est pas valide en raison d'un nombre insuffisant de ticket
+        <div class= "row" *ngIf="verifBMess" > <h4>Votre panier n'est pas valide en raison d'un nombre insuffisant de ticket
         {{nameKO}} pour le type {{rateTypePriceKO}} en stock. Nous vous recommandons de diminuer la quantité {{quantityKO}},
-        ou de repasser commande ultérieurement. Merci
+        ou de repasser commande ultérieurement. Merci</h4>
         </div>
         <button type="button" class="btn btn-primary btn-lg btn-block" (click) = "validBasket2(eticketInfo)" *ngIf="verifB">
             Valider votre panier
