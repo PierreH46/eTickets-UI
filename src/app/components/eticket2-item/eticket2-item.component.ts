@@ -6,11 +6,7 @@ import { BasketService } from '@app/services/basket.service';
 import { AuthenticationService } from '@app/services/authentication.service';
 import { CustomerService } from '@app/services/customer.service';
 
-interface AddToBasketButton {
-  price: number;
-  typePrice: TypePrice;
-  numEtickets: number;
-}
+
 interface AddBasketButton2 {
   price: number;
   typePrice: TypePrice;
@@ -58,7 +54,6 @@ export class Eticket2ItemComponent implements OnInit {
     //  Incrémente le compteur affiché dans l'UI
     const index = this.AddBasketButton2.findIndex(button => button.typePrice === rateTypePrice);
     this.AddBasketButton2[index].quantity++;
-
     // Ajoute le ticket au panier
     this.basketService.addEticketMix(this.eticket, rateTypePrice, choicePrice, this.emailRelative);
   }
@@ -69,7 +64,6 @@ export class Eticket2ItemComponent implements OnInit {
     // Décrémente le compteur affiché dans l'UI
     const index = this.AddBasketButton2.findIndex(button => button.typePrice === rateTypePrice);
     this.AddBasketButton2[index].quantity--;
-
     // Ajoute le ticket au panier
     this.basketService.removeEticketMix(this.eticket, rateTypePrice, choicePrice);
   }

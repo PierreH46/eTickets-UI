@@ -43,8 +43,7 @@ export class RelativeFormComponent implements OnInit {
 
     this.emailMap = this.route.snapshot.paramMap.get('email');
 
-    if(this.emailMap && this.emailMap !== undefined && this.emailMap !== '') {
-
+    if ( this.emailMap && this.emailMap !== undefined && this.emailMap !== '') {
   this.relativeService.getRelativeByMail(this.customer.id, this.emailMap).subscribe( (relative) => {
   this.relative = relative;
 
@@ -73,11 +72,8 @@ export class RelativeFormComponent implements OnInit {
       this.relativeForm.value.phoneNumber
       );
 
-    console.log('relativeDTO', relativeDTO);
-
     if (this.emailMap === undefined || this.emailMap === '' || this.emailMap === null) {
- //     if (relativeDTO.id === undefined || relativeDTO.id === '' || relativeDTO.id === null) {
-      this.relativeService.addRelative( relativeDTO, this.customer.id ).subscribe(
+       this.relativeService.addRelative( relativeDTO, this.customer.id ).subscribe(
         () => {
          this.router.navigate(['/client']);
         },
@@ -85,13 +81,9 @@ export class RelativeFormComponent implements OnInit {
           console.log('une erreur est arrive : ' + error.error[0] + this.gestionError(error.error[0]));
         },
       );
-
     } else {
-      // tslint:disable-next-line: deprecation
- //   this.relativeService.updateRelative(relativeDTO, this.customer.id).subscribe(
       this.relativeService.updateRelativeByMail(relativeDTO, this.customer.id,this.emailMap).subscribe(
       () => {
-        console.log('Suceees update');
         this.router.navigate(['/client']);
       },
       (error) => {
@@ -101,14 +93,10 @@ export class RelativeFormComponent implements OnInit {
     }
   }
   gestionError(erreur: string) {
-    if (erreur === 'ERR_0004') { // pas de prénom
-      return ' il faut un prénom';
-    }
-    if (erreur === 'ERR_0005') { // pas de nom
-      return ' il faut un nom';
+    if (erreur === 'ERR_0034') {
+      return ' Ce proche existe déjà';
     }
   }
   testButton() {
-    console.log('ca marche');
   }
 }

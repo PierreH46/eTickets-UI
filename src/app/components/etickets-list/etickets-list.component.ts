@@ -24,12 +24,8 @@ export class EticketsListComponent implements OnInit {
               private route: ActivatedRoute) { }
 
   ngOnInit() {
-  //  if (this.basketService.isValid) {
-  //    return this.basketService.initBasket();
-  //  }
 
- // Recherche information sur la relative par l'email envoyé pour la modification
-
+ // puor rechercher des informations sur la relative par l'email envoyé pour la modification
  this.emailMap = this.route.snapshot.paramMap.get('email');
 
  this.eticketService.getAllEtickets()

@@ -1,13 +1,5 @@
 ﻿<table>
-    <!--<div class="row">-->
-      <!--<div class="logoBNP">
-      <img src="../../assets/logo-bnpp.png" width="64" alt="brand logo">
-    <a href="https://mabanque.bnpparibas/" class="logoBNP-alone text-hide part-only">BNP Paribas La banque d'un monde qui change</a>
-    <a href="https://mabanque.bnpparibas/" class="logoBNP-alone text-hide pro-only">BNP Paribas La banque d'un monde qui change</a>
-    <p>La banque d'un monde qui change</p>
-    </div>
-    -->
-    <tr>
+     <tr>
       <td colspan="2">
     <div class="wcm-html style-default client no-bread-crumb ident part ">
       <section class="part-only cookies phishing clearfix" style="top: 0px; position: relative; background-color: hsla(332, 52%, 42%, 0.8)">
@@ -17,12 +9,7 @@
           <a href="https://mabanque.bnpparibas/fr/engagement-chartes-et-conventions/site-securise#dernieres_alertes" style="color: #fff; text-decoration: underline;"> En savoir plus</a>.&nbsp;
         </p>
         </section>
-        <!--
-        <section class="pro-only cookies phishing clearfix" style="top: 0px; position: relative; background-color: hsla(332, 52%, 42%, 0.8)">
-            <i class="icon icon-info" style="color: #fff; font-size: 2em; float: left; margin: 0.8em;"></i>
-            <p class="pull-left" style="line-height: 1.2em; font-size: 1em; margin-top: 23px;width: calc(100% - 85px);"> Alerte phishing&nbsp;: Des emails frauduleux circulent afin de récupérer vos identifiants et mot de passe. Ces emails peuvent être couplés à un changement de carte SIM frauduleux dans le but d’initier des opérations sur vos comptes. Soyez vigilant.&nbsp;<a href="https://mabanque.bnpparibas/fr/banque-contacts-pro/engagement-chartes-et-conventions/site-securise#dernieres_alertes">En savoir plus</a>.&nbsp;</p></section> <section class="bpf-only cookies phishing clearfix" style="top: 0px; position: relative; background-color: hsla(332, 52%, 42%, 0.8)"><i class="icon icon-info" style="color: #fff; font-size: 2em; float: left; margin: 0.8em;"></i><p class="pull-left" style="line-height: 1.2em; font-size: 1em; margin-top: 23px;width: calc(100% - 85px);"> De faux emails et des appels téléphoniques vous demandant vos coordonnées personnelles et informations bancaires peuvent vous être adressés au nom de BNP Paribas. Il peut s’agir d’une tentative de fraude. Veillez à ne jamais y répondre, ne pas cliquer sur les liens, ni ouvrir les pièces jointes. En cas de suspicion, contactez immédiatement le centre de relation client au 3273. <a href="https://mabanque.bnpparibas/fr/banque-contact/site-securise#dernieres_alertes">En savoir plus</a>.&nbsp;
-        </p>
-        </section> -->
+
       </div>
       </td>
     </tr>
@@ -32,7 +19,7 @@
         <div class="card">
             <h4 class="card-header">Login :</h4>
             <div class="card-body">
-                <form [formGroup]="loginForm"> <!--(ngSubmit)="onSubmit()">-->
+                <form [formGroup]="loginForm"> 
                     <div class="form-group">
                         <label for="username">Username</label>
                         <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
