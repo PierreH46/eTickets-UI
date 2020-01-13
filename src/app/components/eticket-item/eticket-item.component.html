@@ -2,7 +2,18 @@
     <img [src]="eticket.image" class="card-img-top" style="width: 318px; height: 240px; " alt="">
     <div class="card-body">
         <h5 class="card-title">{{ eticket.name }}</h5>
-        <p class= "card-text"> {{ eticket.description.substring(0,30) }} ... </p>
+
+        <p>
+          <button class="btn btn-link" type="button" data-toggle="collapse"
+                  data-target="#collapseDescription" aria-expanded="false" aria-controls="collapseDescription">
+             Informations
+          </button>
+      </p>
+      <div class="collapse" id="collapseDescription">
+          <div class="card card-body">
+            {{eticket.description}}
+          </div>
+      </div>
 
         <div *ngFor="let button of addToBasketButtons">
 
@@ -16,25 +27,8 @@
 
                     <i class="far fa-plus-square" (click)="add(button.typePrice, button.price, $event)"></i>
                 </p>
-
             </div>
-
         </div>
-        <p>
-            <!-- <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-               Link with href
-             </a>-->
-             <button class="btn btn-primary" type="button" data-toggle="collapse"
-             data-target="#collapseExample" aria-expanded="false" aria-controls="collapseDescription">
-               Informations
-             </button>
-           </p>
-        {{eticket.description}}
-
-
-          <div class="collapse" id="collapseDescription">
-            <div class="card card-body">
-              {{eticket.description}}
-
+        
     </div>
 </div>

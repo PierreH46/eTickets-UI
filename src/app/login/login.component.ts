@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { AuthenticationService } from '@app/services/authentication.service';
 import { Customer } from '@app/model/customer';
+import { BasketService } from '@app/services/basket.service';
 
 
 @Component({ templateUrl: 'login.component.html' })
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
-        private authenticationService: AuthenticationService
+        private authenticationService: AuthenticationService,
+        private basketService: BasketService
     ) {
         // redirect to home if already logged in
         if (this.authenticationService.currentUserValue) {
@@ -35,6 +37,9 @@ export class LoginComponent implements OnInit {
 
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+
+        // reinitialisation du basket
+        this.basketService.initBasket();
     }
 
     // convenience getter for easy access to form fields

@@ -63,10 +63,12 @@ export class BasketService {
 
   saveBasket() {
     // - Crée la version sérialisable avec Array.push()
-    const storageFriendly: Array<{ eticketId: string, quantity: number; }> = [];
+    const storageFriendly: Array<{ eticketId: string, rateTypePrice: string, choicePrice: number, quantity: number }> = [];
     this.eticketInfo.forEach(pInfo => {
       storageFriendly.push({
         eticketId: pInfo.eticket.id,
+        rateTypePrice: pInfo.rateTypePrice,
+        choicePrice: pInfo.choicePrice,
         quantity: pInfo.quantity
       });
     });
