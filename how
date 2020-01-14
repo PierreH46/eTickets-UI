@@ -1,0 +1,83 @@
+[33mcommit 92c612b04c5a0773cc70640b7e27f8cb4e52a08e[m[33m ([m[1;36mHEAD -> [m[1;32mProjet_Final[m[33m, [m[1;31morigin/Projet_Final[m[33m)[m
+Author: Drakkar94 <palix.david@gmail.com>
+Date:   Mon Jan 13 11:43:39 2020 +0100
+
+    Version Final
+
+[33mcommit a5ba58c1b9379e32698b332928a536b4de563f39[m
+Author: Drakkar94 <palix.david@gmail.com>
+Date:   Mon Jan 13 09:56:19 2020 +0100
+
+    nettoyage
+
+[33mcommit 309732e01768d637f2dbe07ea1c5e795ad916a08[m[33m ([m[1;32mDavid02[m[33m)[m
+Author: Drakkar94 <palix.david@gmail.com>
+Date:   Mon Jan 13 02:05:16 2020 +0100
+
+    verification panier
+
+[33mcommit 60f46fdae512dd57afcd6a6efbef1a5f64c8491d[m[33m ([m[1;31morigin/David02[m[33m)[m
+Author: Drakkar94 <palix.david@gmail.com>
+Date:   Sat Jan 11 19:27:00 2020 +0100
+
+    infio login
+
+[33mcommit 27f3d797a6c4498626d5d90dd3a4fa3e08721116[m
+Author: Drakkar94 <palix.david@gmail.com>
+Date:   Sat Jan 11 17:30:15 2020 +0100
+
+    gestion des relatives
+
+[33mcommit 91dac10a6ad9a416a72171dbf08aa8b77e3bd044[m
+Author: Drakkar94 <palix.david@gmail.com>
+Date:   Fri Jan 10 15:24:46 2020 +0100
+
+    nettoyage
+
+[33mcommit 83bee0f94771bcc28d3e1f31ded3287fedbc60c0[m
+Author: Drakkar94 <palix.david@gmail.com>
+Date:   Fri Jan 10 15:14:23 2020 +0100
+
+    update du rate
+
+[33mcommit 01ee48bed3d260d2aa8af1191d3895f19c106de4[m
+Author: Drakkar94 <palix.david@gmail.com>
+Date:   Thu Jan 9 14:47:50 2020 +0100
+
+    nettoyage customer
+
+[33mcommit 1b1947699cca984204e7323ba2294fb8fc1ad3f4[m
+Author: Drakkar94 <palix.david@gmail.com>
+Date:   Thu Jan 9 13:53:20 2020 +0100
+
+    persistance du basket
+
+[33mcommit 45620a91ef9a5da4b09825ccf0ab3797bd7e68a1[m
+Author: Drakkar94 <palix.david@gmail.com>
+Date:   Thu Jan 9 09:56:46 2020 +0100
+
+    gestion du customer
+
+[33mcommit 90c84c82392c578795d0fd5ccc39a701e696aeb2[m
+Author: Drakkar94 <palix.david@gmail.com>
+Date:   Thu Jan 9 00:29:52 2020 +0100
+
+    Prise en compte du customer via l'authentification
+
+[33mcommit 920aa8087ac23095ef608df69828415c60f39c71[m[33m ([m[1;32mDavid[m[33m)[m
+Author: Drakkar94 <palix.david@gmail.com>
+Date:   Wed Jan 8 17:26:09 2020 +0100
+
+    Update Basket et intégration user
+
+[33mcommit ed877d3b63cd89a8b70f6ceefb95b6aeb1d7ae1f[m[33m ([m[1;31morigin/David[m[33m)[m
+Author: Drakkar94 <palix.david@gmail.com>
+Date:   Wed Jan 8 14:06:49 2020 +0100
+
+    coucou essai commit
+
+[33mcommit d8fde8f6a44e9bac42435904d02e743e2a26fb23[m[33m ([m[1;32mmaster[m[33m)[m
+Author: Drakkar94 <palix.david@gmail.com>
+Date:   Wed Jan 8 13:58:53 2020 +0100
+
+    version 0.2
