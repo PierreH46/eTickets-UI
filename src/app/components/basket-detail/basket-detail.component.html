@@ -41,7 +41,7 @@
         {{nameKO}} pour le type {{rateTypePriceKO}} en stock. Nous vous recommandons de diminuer la quantité {{quantityKO}},
         ou de repasser commande ultérieurement. Merci</h4>
         </div>
-        <button type="button" class="btn btn-primary btn-lg btn-block" (click) = "validBasket2(eticketInfo)" *ngIf="verifB">
+        <button type="button" class="btn btn-primary btn-lg btn-block" (click) = "validBasket(eticketInfo)" *ngIf="verifB">
             Valider votre panier
           </button>
           <button type="button" class="btn btn-secondary btn-lg btn-block" (click) = "discardBasket()" routerLink="/">

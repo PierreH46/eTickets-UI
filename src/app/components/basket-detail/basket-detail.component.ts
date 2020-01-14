@@ -104,7 +104,7 @@ export class BasketDetailComponent implements OnInit {
   }
 
   validBasket2() {
-    this.eticketInfo.forEach (c => {
+      this.eticketInfo.forEach (c => {
     this.basket = new Basket (null, c.quantity, false, c.eticket.category, c.eticket.name,
         c.choicePrice, c.rateTypePrice, this.date, c.emailRelative );
         // persistence du basket
@@ -178,13 +178,10 @@ export class BasketDetailComponent implements OnInit {
     this.route.navigate(['/commande']);
 }
 
-// Gestin des erreurs a faire (regarder library_form_components)
+// Gestin des erreurs
 gestionError(erreur: string) {
-  if (erreur === 'ERR_0022') { // pas de prénom
+  if (erreur === 'ERR_0022') { // informations sur le ticket
     return ' Les informations du ticket ne sont pas disponibles';
-  }
-  if (erreur === 'ERR_0005') { // pas de nom
-    return ' il faut un nom';
   }
 }
 
